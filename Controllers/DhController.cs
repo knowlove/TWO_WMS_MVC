@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVC.Dh_Dal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,11 @@ namespace MVC.Controllers
 {
     public class DhController : Controller
     {
+        DhDal dd = new DhDal();
         // GET: Dh
         public ActionResult DhDj()
         {
-            return View();
+            return View(dd.GetDhTables());
         }
         // GET: Dh
         public ActionResult FbpDh()
