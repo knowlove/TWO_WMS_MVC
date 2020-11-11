@@ -285,7 +285,14 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Warehouse_homepage.cshtml" />
-    <Content Include="Views\Home_page\Index.cshtml" />
+    <Content Include="Views\Home_page\Distribution.cshtml" />
+    <Content Include="Views\Home_page\Drop.cshtml" />
+    <Content Include="Views\Home_page\Groupbooking.cshtml" />
+    <Content Include="Views\Home_page\Management.cshtml" />
+    <Content Include="Views\Home_page\Precondition.cshtml" />
+    <Content Include="Views\Home_page\Security.cshtml" />
+    <Content Include="Views\Home_page\Spectaculars.cshtml" />
+    <Content Include="Views\Home_page\Stocks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
