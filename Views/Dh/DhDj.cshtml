@@ -11,17 +11,28 @@
     <title>DhDj</title>
 </head>
 <body>
-    <div> 
+    <div>
         <div id="Cxk"></div>
         <div id="Sjxs"></div>
     </div>
 </body>
 </html>
 <script>
-    function (){
+    //文档就绪
+    $(function () {
+        Show();
+    })
+    function Show() {
+        var div1 = '采购单号:<input id="Text1" type="text" />'
+            + '供应商:<input id="Text1" type="text" />'
+            + '<input id="Button1" type="button" value="查询" onclick="Show()" />'
+            + '</br>'
+            + '<select id="Select1" > < option >全部</option >< option >未入库</option >< option >部分入库</option ></select >'
+            + '采购人:<input id="Text1" type="text" />';
+        $("#Cxk").html(div1)
         $.ajax({
 
-        })
 
+        })
     }
 </script>
