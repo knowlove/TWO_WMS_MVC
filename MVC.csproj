@@ -116,10 +116,6 @@
     <Compile Include="Controllers\DhController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Home_pageController.cs" />
-    <Compile Include="Dh_Dal\DBHelper.cs" />
-    <Compile Include="Dh_Dal\DhDal.cs" />
-    <Compile Include="Dh_Model\DhTable.cs" />
-    <Compile Include="Dh_Model\DLTablecs.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
