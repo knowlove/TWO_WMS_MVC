@@ -1,0 +1,89 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetAll</title>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+</head>
+<body>
+    <div>
+        <input id="Button1" type="button" value="显示" onclick="Shows()" />
+        <table>
+            <thead>
+                <tr>
+                    <td>序号</td>
+                    <td>采购单号</td>
+                    <td>供应商名称</td>
+                    <td>产品品类</td>
+                    <td>采购日期</td>
+                    <td>采购人</td>
+                    <td>入库状态</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <thead id="rd">
+
+            </thead>
+        </table>
+    </div>
+</body>
+</html>
+<script>
+    function Shows() {
+        $.ajax({
+            url: "http://localhost:15722/api/DhEmp",
+            type: "GET",
+            dataType: "json",
+            success:
+                function (res) {
+                    var tb = "";
+                    $("#rd").empty();
+                    $(res).each(function () {
+                        console.log(res);
+                        tb += "<tr>"
+                            + "<td>" + this.DhId + "</td>"
+                            + "<td>" + this.DhCgdh + "</td>"
+                            + "<td>" + this.DhGys + "</td>"
+                            + "<td>" + this.DhPl + "</td>"
+                            + "<td>" + this.DhRq + "元</td>"
+                            + "<td>" + this.DhName + "</td>"
+                            + "<td>" + this.DhType + "</td>"
+                            + "<td>" + "<input id="+this.DhId+" type='button' value="+"到货登记"+" />" + "</td>"
+                            + "</tr>";
+                    })
+                    $("#rd").append(tb);
+                }
+        })
+    }
+    function Show() {
+        $.ajax({
+            url: "http://localhost:15722/api/DhEmp",
+            type: "GET",
+            dataType: "json",
+            success:function (d) {
+                    var tb = "";
+                $("#rd").empty();
+                for (var i = 0; i < d.length; i++) {
+                    tb += "<tr>"
+                        + "<td>" + this.DhId + "</td>"
+                        + "<td>" + this.DhCgdh + "</td>"
+                        + "<td>" + this.DhGys + "</td>"
+                        + "<td>" + this.DhPl + "</td>"
+                        + "<td>" + this.DhRq + "元</td>"
+                        + "<td>" + this.DhName + "</td>"
+                        + "<td>" + this.DhType + "</td>"
+                        + "<td>" + "<input id=" + this.DhId + " type='button' value=" + "到货登记" + " />" + "</td>"
+                        + "</tr>";
+                }
+                   
+                    $("#rd").append(tb);
+                }
+        })
+    }
+</script>

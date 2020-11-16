@@ -113,6 +113,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DhEmpController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Home_pageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -346,6 +347,7 @@
     <Content Include="Views\Home_page\Stocks.cshtml" />
     <Content Include="Views\Home\Shu.cshtml" />
     <Content Include="Views\Shared\Warehome.cshtml" />
+    <Content Include="Views\DhEmp\GetAll.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
