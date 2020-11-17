@@ -76,17 +76,17 @@
                             + "<td>" + this.DhRq + "</td>"
                             + "<td>" + this.DhName + "</td>"
                             + "<td>" + this.DhType + "</td>"
-                            + "<td>" + "<input id=" + this.DhId + " type='button' value='到货详情'"+ "onclick= Xqy()/>" + "<input id=" + this.DhId + " type='button' value='删除'" + "onclick= Del() />"+ "</td>"
+                            + "<td>" + "<input id=" + this.DhId + " type='button' value='到货详情'" + "onclick= Xqy(" + this.DhId + ")/>" + "<input id=" + this.DhId + " type='button' value='删除'" + "onclick= Del(" + this.DhId + ") />" + "</td>"
                             + "</tr>";
                     })
                     $("#rd").append(tb);
                 }
         })
     }
-    function Del() {
+    function Del(DhId) {
         $.ajax({
-            url: "http://localhost:55266/api/DhEmp/DelDhEmp",
-            type: "Post",
+            url: "http://localhost:55266/api/DhEmp/DelDhEmp?id=" + DhId,
+            type: "POST",
             dataType: "json",
             success: function (d) {
                 if (d > 0) {
