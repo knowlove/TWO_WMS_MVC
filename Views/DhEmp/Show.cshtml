@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>到货登记</title>
+    <title>Show</title>
     <script src="~/Scripts/jquery-3.4.1.js"></script>
 </head>
 <body>
@@ -76,11 +76,26 @@
                             + "<td>" + this.DhRq + "</td>"
                             + "<td>" + this.DhName + "</td>"
                             + "<td>" + this.DhType + "</td>"
-                            + "<td>" + "<input id="+this.DhId+" type='button' value="+"到货登记"+" />" + "</td>"
+                            + "<td>" + "<input id=" + this.DhId + " type='button' value='到货详情'"+ "onclick= Xqy()/>" + "<input id=" + this.DhId + " type='button' value='删除'" + "onclick= Del() />"+ "</td>"
                             + "</tr>";
                     })
                     $("#rd").append(tb);
                 }
+        })
+    }
+    function Del() {
+        $.ajax({
+            url: "http://localhost:55266/api/DhEmp/DelDhEmp",
+            type: "Post",
+            dataType: "json",
+            success: function (d) {
+                if (d > 0) {
+                    Shows();
+                } else {
+
+                    alert("删除失败!");
+                }
+            }
         })
     }
     function Showc() {
