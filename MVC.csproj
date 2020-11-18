@@ -113,13 +113,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\DhController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Home_pageController.cs" />
-    <Compile Include="Dh_Dal\DBHelper.cs" />
-    <Compile Include="Dh_Dal\DhDal.cs" />
-    <Compile Include="Dh_Model\DhTable.cs" />
-    <Compile Include="Dh_Model\DLTablecs.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -349,7 +344,6 @@
     <Content Include="Views\Home_page\Security.cshtml" />
     <Content Include="Views\Home_page\Spectaculars.cshtml" />
     <Content Include="Views\Home_page\Stocks.cshtml" />
-    <Content Include="Views\Dh\DhDj.cshtml" />
     <Content Include="Views\Home\Shu.cshtml" />
     <Content Include="Views\Shared\Warehome.cshtml" />
     <Content Include="Views\Home_page\Stocks1.cshtml" />
