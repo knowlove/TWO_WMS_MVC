@@ -22,5 +22,9 @@ namespace MVC.Controllers
         {
             return View();
         }
+        public ActionResult Xqy()
+        {
+            return View();
+        }
     }
 }

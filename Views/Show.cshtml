@@ -99,14 +99,15 @@
         })
     }
     function Showc() {
-        var Cgdh = $('#Cgdh').val()
-        var Gys = $('#Gys').val()
-        var Pl = $('#Cppl').val()
-        var Cgr = $('#Cgr').val()
-        var Rkzt = $('#Rkzt').val()
+        var Cgdh = $('#Cgdh').val
+        var Gys = $('#Gys').val
+        var Pl = $('#Cppl').val
+        var Cgr = $('#Cgr').val
+        var Rkzt = $('#Rkzt').val
         $.ajax({
-            url: "GET api/DhEmp/Getc?Cgdh=" + Cgdh + "Gys=" + Gys + "Pl=" + Pl + "Cgr=" + Cgr + "Rkzt=" + Rkzt,
+            url: "http://localhost:15722/api/Getc",
             type: "GET",
+            data: { Cgdh: Cgdh, Gys: Gys, Pl: Pl, Cgr: Cgr, Rkzt: Rkzt },
             dataType: "json",
             success:
                 function (res) {
@@ -122,7 +123,7 @@
                             + "<td>" + this.DhRq + "</td>"
                             + "<td>" + this.DhName + "</td>"
                             + "<td>" + this.DhType + "</td>"
-                            + "<td>" + "<input id=" + this.DhId + " type='button' value='到货详情'" + "onclick= Xqy(" + this.DhId + ")/>" + "<input id=" + this.DhId + " type='button' value='删除'" + "onclick= Del(" + this.DhId + ") />" + "</td>"
+                            + "<td>" + "<input id=" + this.DhId + " type='button' value=" + "到货登记" + " />" + "</td>"
                             + "</tr>";
                     })
                     $("#rd").append(tb);
