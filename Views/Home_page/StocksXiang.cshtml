@@ -3,23 +3,41 @@
     ViewBag.Title = "StocksXiang";
     Layout = "~/Views/Shared/Warehouse_homepage.cshtml";
 }
+<link href="~/Easy Ui/Content/icon 1.css" rel="stylesheet" />
+<link href="~/Easy Ui/Content/easyui 2.css" rel="stylesheet" />
+<script src="~/Easy Ui/jquery.min 3.js"></script>
+<script src="~/Easy Ui/jquery.easyui.min 4.js"></script>
+<script src="~/Easy Ui/easyui-lang-zh_CN 5.js"></script>
+<input type="hidden" id="Id" value="@ViewBag.Id" />
 
-<h2>StocksXiang</h2>
-<head>
-    <script type="text/javascript" src="datagrid-scrollview.js"></script>
-</head>
-<table id="tt" class="easyui-datagrid" style="width:700px;height:250px"
-       title="DataGrid - VirtualScrollView"
-       data-options="url:'get_data.php',view:scrollview,rownumbers:true,singleSelect:true,autoRowHeight:false,pageSize:50">
-    <thead>
-        <tr>
-            <th field="inv" width="80">Inv No</th>
-            <th field="date" width="100">Date</th>
-            <th field="name" width="80">Name</th>
-            <th field="amount" width="80" align="right">Amount</th>
-            <th field="price" width="80" align="right">Price</th>
-            <th field="cost" width="100" align="right">Cost</th>
-            <th field="note" width="110">Note</th>
-        </tr>
-    </thead>
-</table>
+<table id="dg"></table>
+<br />
+<div style="text-align:center">
+    <input type="button" id="btnSave" value="返回" />
+</div>
+<script>
+    $('#dg').datagrid({
+        url: 'http://localhost:55266/WMS_Alaetr/Mingxi?Id=' + $("#Id").val(),
+        method: "get",
+        pagination: true,
+        pageSize: 10,
+        pageList: [10, 20, 50],
+        columns: [[
+            { field: 'ck', checkbox: true },
+            { field: 'Id', title: '序号', width: 100 },
+            { field: 'WName', title: '仓库', width: 100 },
+            { field: 'CName', title: '类别', width: 100 },
+            { field: 'Coding', title: '产品编号', width: 100 },
+            { field: 'Name', title: '产品名称', width: 100 },
+            { field: 'Specification', title: '产品规格', width: 100 },
+            { field: 'Unit', title: '计量单位', width: 100 },
+            { field: 'Quantity', title: '库存数量', width: 100 },
+            { field: 'Congelation', title: '冻结数量', width: 100 },
+            { field: 'Available', title: '可用库存', width: 100 },
+        ]]
+    });
+    //查询
+    $("#btnSave").click(function () {
+        location.href = "/Home_page/Stocks";
+    });
+</script>

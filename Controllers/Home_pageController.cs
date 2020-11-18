@@ -17,8 +17,9 @@ namespace MVC.Controllers
         {
             return View();
         }
-        public ActionResult StocksXiang()    //总库存查询详情
+        public ActionResult StocksXiang(int id)    //总库存查询详情
         {
+            ViewBag.id = id;
             return View();
         }
         public ActionResult Stocks1()    //总库存查询

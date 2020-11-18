@@ -9,6 +9,7 @@
 <script src="~/Easy Ui/jquery.min 3.js"></script>
 <script src="~/Easy Ui/jquery.easyui.min 4.js"></script>
 <script src="~/Easy Ui/easyui-lang-zh_CN 5.js"></script>
+
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
     <legend>总库存查询</legend>
 </fieldset>
@@ -24,11 +25,10 @@
         <div class="layui-tab-item layui-show">
             @*查询框架*@
             <div style="width:1500px;height:50px;margin-top:10px;border:3px #808080 solid;padding-top:20px;padding-left:30px;margin-bottom:40px">
-
                 全部仓库:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <select id="WName" class="easyui-combobox" name="dept" style="width:150px;"><option>全部仓库</option><option id="1">A仓库</option><option id="2">B仓库</option> </select>
+                <select id="WName" class="easyui-combobox" name="dept" style="width:150px;"><option>全部仓库</option><option>A仓库</option><option>B仓库</option></select>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类别:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <select id="CName" class="easyui-combobox" name="dept" style="width:150px;"></select>
+                <select id="DC" class="easyui-combobox" name="dept" style="width:150px;"><option>==请选择==</option><option>苹果</option><option>梨</option><option>西瓜</option><option>哈密瓜</option><option>火龙果</option><option>木瓜</option></select>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;产品编号:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <input id="Coding" class="easyui-textbox" data-options="iconCls:'icon-search'" style="width:100px">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;产品名称:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -47,8 +47,8 @@
                     url: 'http://localhost:55266/api/WMS_Alaetr/Show',
                     method: 'get',
                     pagination: true,
-                    pageSize: 5,
-                    pageList: [5,10,20,50],
+                    pageSize: 10,
+                    pageList: [10, 20, 50],
                     columns: [[
                         { field: 'ck', checkbox: true },
                         { field: 'Id', title: '序号', width: 100 },
@@ -70,16 +70,19 @@
                     ]]
                 });
 
+                function Edit(Id) {
+                    location.href = "StocksXiang?Id=" + Id;
+                }
 
                 //查询
                 $("#btn").click(function () {
                     $('#dg').datagrid('load', {
+                        WName: $("#WName").val(),
+                        DC: $("#DC").val(),
                         Coding: $("#Coding").val(),
                         Name: $("#Name").val()
                     });
                 });
-
-
 
             </script>
 
@@ -103,10 +106,10 @@
 
         </div>
         @*内容二*@
-    <div class="layui-tab-item" >
+        <div class="layui-tab-item">
 
-      
 
-    </div>
+
+        </div>
     </div>
 </div>
