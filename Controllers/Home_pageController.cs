@@ -9,11 +9,19 @@ namespace MVC.Controllers
     public class Home_pageController : Controller
     {
         // GET: Home_page
-        public ActionResult Groupbooking()    //拼团库存预警表
+        public ActionResult Groupbooking()    //位移中查询
         {
             return View();
         }
         public ActionResult Stocks()    //总库存查询
+        {
+            return View();
+        }
+        public ActionResult StocksXiang()    //总库存查询详情
+        {
+            return View();
+        }
+        public ActionResult Stocks1()    //总库存查询
         {
             return View();
         }

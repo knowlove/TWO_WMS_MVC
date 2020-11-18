@@ -352,6 +352,8 @@
     <Content Include="Views\Dh\DhDj.cshtml" />
     <Content Include="Views\Home\Shu.cshtml" />
     <Content Include="Views\Shared\Warehome.cshtml" />
+    <Content Include="Views\Home_page\Stocks1.cshtml" />
+    <Content Include="Views\Home_page\StocksXiang.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Stocks";
+    ViewBag.Title = "Stocks1";
     Layout = "~/Views/Shared/Warehouse_homepage.cshtml";
 }
 
@@ -16,11 +16,17 @@
 
 <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
     <ul class="layui-tab-title">
-        <li class="layui-this">产品总库存</li>
-        <li><a onclick="location.href='/Home_page/Stocks1'">商品总库存</a></li>
+        <li><a onclick="location.href='/Home_page/Stocks'">产品总库存</a></li>
+        <li class="layui-this"> 商品总库存</li>
     </ul>
     <div class="layui-tab-content">
         @*内容一*@
+        <div class="layui-tab-item">
+
+
+
+        </div>
+        @*内容二*@
         <div class="layui-tab-item layui-show">
             @*查询框架*@
             <div style="width:1500px;height:50px;margin-top:10px;border:3px #808080 solid;padding-top:20px;padding-left:30px;margin-bottom:40px">
@@ -48,7 +54,7 @@
                     method: 'get',
                     pagination: true,
                     pageSize: 5,
-                    pageList: [5,10,20,50],
+                    pageList: [5, 10, 20, 50],
                     columns: [[
                         { field: 'ck', checkbox: true },
                         { field: 'Id', title: '序号', width: 100 },
@@ -70,6 +76,11 @@
                     ]]
                 });
 
+                function Edit(Id)
+                {
+                    
+                    location.href = "/Home_page/StocksXiang";
+                }
 
                 //查询
                 $("#btn").click(function () {
@@ -83,30 +94,7 @@
 
             </script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         </div>
-        @*内容二*@
-    <div class="layui-tab-item" >
 
-      
-
-    </div>
     </div>
 </div>
