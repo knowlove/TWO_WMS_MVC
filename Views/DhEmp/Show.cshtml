@@ -99,15 +99,14 @@
         })
     }
     function Showc() {
-        var Cgdh = $('#Cgdh').val
-        var Gys = $('#Gys').val
-        var Pl = $('#Cppl').val
-        var Cgr = $('#Cgr').val
-        var Rkzt = $('#Rkzt').val
+        var Cgdh = $('#Cgdh').val()
+        var Gys = $('#Gys').val()
+        var Pl = $('#Cppl').val()
+        var Cgr = $('#Cgr').val()
+        var Rkzt = $('#Rkzt').val()
         $.ajax({
-            url: "http://localhost:15722/api/Getc",
+            url: "GET api/DhEmp/Getc?Cgdh=" + Cgdh + "Gys=" + Gys + "Pl=" + Pl + "Cgr=" + Cgr + "Rkzt=" + Rkzt,
             type: "GET",
-            data: { Cgdh: Cgdh, Gys: Gys, Pl: Pl, Cgr: Cgr, Rkzt: Rkzt },
             dataType: "json",
             success:
                 function (res) {
