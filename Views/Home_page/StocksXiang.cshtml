@@ -17,11 +17,8 @@
 </div>
 <script>
     $('#dg').datagrid({
-        url: 'http://localhost:55266/WMS_Alaetr/Mingxi?Id=' + $("#Id").val(),
+        url: 'http://localhost:55266/api/WMS_Alaetr/Mingxi?Id=' + $("#Id").val(),
         method: "get",
-        pagination: true,
-        pageSize: 10,
-        pageList: [10, 20, 50],
         columns: [[
             { field: 'ck', checkbox: true },
             { field: 'Id', title: '序号', width: 100 },

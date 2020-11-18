@@ -347,6 +347,7 @@
     <Content Include="Views\Shared\Warehome.cshtml" />
     <Content Include="Views\Home_page\Stocks1.cshtml" />
     <Content Include="Views\Home_page\StocksXiang.cshtml" />
+    <Content Include="Views\Home_page\Security1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

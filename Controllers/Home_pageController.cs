@@ -26,7 +26,11 @@ namespace MVC.Controllers
         {
             return View();
         }
-        public ActionResult Security()    //安全库存预警
+        public ActionResult Security()    //安全库存预警（产品）
+        {
+            return View();
+        }
+        public ActionResult Security1()    //安全库存预警（商品）
         {
             return View();
         }
