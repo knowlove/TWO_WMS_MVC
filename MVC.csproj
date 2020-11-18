@@ -113,6 +113,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DhEmpController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Home_pageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -348,6 +349,10 @@
     <Content Include="Views\Shared\Warehome.cshtml" />
     <Content Include="Views\Home_page\Stocks1.cshtml" />
     <Content Include="Views\Home_page\StocksXiang.cshtml" />
+    <Content Include="Views\GetAll.cshtml" />
+    <Content Include="Views\Show.cshtml" />
+    <Content Include="Views\DhEmp\GetAll.cshtml" />
+    <Content Include="Views\DhEmp\Show.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

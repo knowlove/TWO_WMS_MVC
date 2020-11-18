@@ -1,0 +1,118 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>到货登记</title>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+</head>
+<body>
+    <div>
+        采购单号:<input id="Cgdh" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+        供应商:<input id="Gys" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+        采购人:<input id="Cgr" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;
+        <br />
+        产品品类:<select id="Cppl">
+            <option value="">    全部</option>
+            <option value="水果">水果</option>
+            <option value="海鲜">海鲜</option>
+            <option value="蔬菜">蔬菜</option>
+        </select>&nbsp;&nbsp;&nbsp;&nbsp;
+        入库状态:<select id="Rkzt">
+            <option value="">    >全部</option>
+            <option value="已入库">>已入库</option>
+            <option value="未入库">>未入库</option>
+            <option value="部分入库">>部分入库</option>
+
+        </select>
+        <input id="Button1" type="button" value="查询" onclick="Showc()" />
+    </div>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <td>序号</td>
+                    <td>采购单号</td>
+                    <td>供应商名称</td>
+                    <td>产品品类</td>
+                    <td>采购日期</td>
+                    <td>采购人</td>
+                    <td>入库状态</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <thead id="rd">
+
+            </thead>
+        </table>
+    </div>
+</body>
+</html>
+<script>
+    $(function () {
+        Shows();
+    });
+    function Shows() {
+        $.ajax({
+            url: "http://localhost:55266/api/DhEmp/GetAll",
+            type: "GET",
+            dataType: "json",
+            success:
+                function (res) {
+                    var tb = "";
+                    $("#rd").empty();
+                    $(res).each(function () {
+                        console.log(res);
+                        tb += "<tr>"
+                            + "<td>" + this.DhId + "</td>"
+                            + "<td>" + this.DhCgdh + "</td>"
+                            + "<td>" + this.DhGys + "</td>"
+                            + "<td>" + this.DhPl + "</td>"
+                            + "<td>" + this.DhRq + "</td>"
+                            + "<td>" + this.DhName + "</td>"
+                            + "<td>" + this.DhType + "</td>"
+                            + "<td>" + "<input id="+this.DhId+" type='button' value="+"到货登记"+" />" + "</td>"
+                            + "</tr>";
+                    })
+                    $("#rd").append(tb);
+                }
+        })
+    }
+    function Showc() {
+        var Cgdh = $('#Cgdh').val
+        var Gys = $('#Gys').val
+        var Pl = $('#Cppl').val
+        var Cgr = $('#Cgr').val
+        var Rkzt = $('#Rkzt').val
+        $.ajax({
+            url: "http://localhost:15722/api/Getc",
+            type: "GET",
+            data: { Cgdh: Cgdh, Gys: Gys, Pl: Pl, Cgr: Cgr, Rkzt: Rkzt },
+            dataType: "json",
+            success:
+                function (res) {
+                    var tb = "";
+                    $("#rd").empty();
+                    $(res).each(function () {
+                        console.log(res);
+                        tb += "<tr>"
+                            + "<td>" + this.DhId + "</td>"
+                            + "<td>" + this.DhCgdh + "</td>"
+                            + "<td>" + this.DhGys + "</td>"
+                            + "<td>" + this.DhPl + "</td>"
+                            + "<td>" + this.DhRq + "</td>"
+                            + "<td>" + this.DhName + "</td>"
+                            + "<td>" + this.DhType + "</td>"
+                            + "<td>" + "<input id=" + this.DhId + " type='button' value=" + "到货登记" + " />" + "</td>"
+                            + "</tr>";
+                    })
+                    $("#rd").append(tb);
+                }
+        })
+    }
+</script>
