@@ -4,5 +4,109 @@
     Layout = "~/Views/Shared/Warehouse_homepage.cshtml";
 }
 
-<h2>Security</h2>
+<link href="~/Easy Ui/Content/icon 1.css" rel="stylesheet" />
+<link href="~/Easy Ui/Content/easyui 2.css" rel="stylesheet" />
+<script src="~/Easy Ui/jquery.min 3.js"></script>
+<script src="~/Easy Ui/jquery.easyui.min 4.js"></script>
+<script src="~/Easy Ui/easyui-lang-zh_CN 5.js"></script>
 
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
+    <legend>库存报警管理</legend>
+</fieldset>
+
+
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+    <ul class="layui-tab-title">
+        <li class="layui-this">产品报警</li>
+        <li><a onclick="location.href='/Home_page/Security1'">商品报警</a></li>
+    </ul>
+    <div class="layui-tab-content">
+        @*内容一*@
+        <div class="layui-tab-item layui-show">
+            <br />
+            <br />
+            库存状态：<input id="1" type="radio" />低于安全库存
+            <input id="2" type="radio" />库存为0
+            <input id="3" type="radio" />全部
+
+            @*查询框架*@
+        <div style="width:1500px;height:50px;margin-top:30px;border:3px #808080 solid;padding-top:20px;padding-left:30px;margin-bottom:40px">
+            <a id="btn_pg" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">苹果</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a id="btn_sc" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">蔬菜</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a id="btn_rl" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">肉类</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a id="btn_sd" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">速冻共享</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a id="btn_fb" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">方便素食</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a id="btn_ls" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">零食</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a id="btn_hygx" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">海洋共享</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a id="btn_rd" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">肉蛋</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a id="btn_yp" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">饮品</a>
+        </div>
+
+
+            @*查询框架*@
+            <div style="width:1500px;height:50px;margin-top:10px;border:3px #808080 solid;padding-top:20px;padding-left:30px;margin-bottom:40px">
+                全部仓库:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <select id="WName" class="easyui-combobox" name="dept" style="width:150px;"><option>全部仓库</option><option>A仓库</option><option>B仓库</option></select>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类别:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <select id="DC" class="easyui-combobox" name="dept" style="width:150px;"><option>==请选择==</option><option>苹果</option><option>梨</option><option>西瓜</option><option>哈密瓜</option><option>火龙果</option><option>木瓜</option></select>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;产品编号:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="Coding" class="easyui-textbox" data-options="iconCls:'icon-search'" style="width:100px">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;产品名称:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="Name" data-options="iconCls:'icon-search'" class="easyui-textbox" style="width:100px" />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a>
+
+            </div>
+            @*table表格*@
+            <table id="dg" style="width:100%"></table>
+
+            @*绑定数据*@
+            <script>
+                //显示
+                $('#dg').datagrid({
+                    url: 'http://localhost:55266/api/WMS_Alaetr/Show',
+                    method: 'get',
+                    pagination: true,
+                    pageSize: 10,
+                    pageList: [10, 20, 50],
+                    columns: [[
+                        { field: 'ck', checkbox: true },
+                        { field: 'Id', title: '序号', width: 100 },
+                        { field: 'WName', title: '仓库', width: 100 },
+                        { field: 'CName', title: '类别', width: 100 },
+                        { field: 'Coding', title: '产品编号', width: 100 },
+                        { field: 'Name', title: '产品名称', width: 100 },
+                        { field: 'Quantity', title: '库存数量', width: 100 },
+                        { field: 'Congelation', title: '冻结数量', width: 100 },
+                        { field: 'Inventory', title: '库存下限', width: 100 },
+                        { field: 'Below', title: '低于安全库存', width: 100 },
+                        { field: 'Specification', title: '产品规格', width: 100 },
+                        { field: 'Unit', title: '计量单位', width: 100 },
+                    ]]
+                });
+
+                function Edit(Id) {
+                    location.href = "StocksXiang?Id=" + Id;
+                }
+
+                //查询
+                $("#btn").click(function () {
+                    $('#dg').datagrid('load', {
+                        WName: $("#WName").val(),
+                        DC: $("#DC").val(),
+                        Coding: $("#Coding").val(),
+                        Name: $("#Name").val()
+                    });
+                });
+
+            </script>
+
+        </div>
+        @*内容二*@
+        <div class="layui-tab-item">
+
+
+
+        </div>
+    </div>
+</div>

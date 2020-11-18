@@ -17,15 +17,20 @@ namespace MVC.Controllers
         {
             return View();
         }
-        public ActionResult StocksXiang()    //总库存查询详情
+        public ActionResult StocksXiang(int id)    //总库存查询详情
         {
+            ViewBag.id = id;
             return View();
         }
         public ActionResult Stocks1()    //总库存查询
         {
             return View();
         }
-        public ActionResult Security()    //安全库存预警
+        public ActionResult Security()    //安全库存预警（产品）
+        {
+            return View();
+        }
+        public ActionResult Security1()    //安全库存预警（商品）
         {
             return View();
         }
