@@ -353,6 +353,7 @@
     <Content Include="Views\Show.cshtml" />
     <Content Include="Views\DhEmp\GetAll.cshtml" />
     <Content Include="Views\DhEmp\Show.cshtml" />
+    <Content Include="Views\DhEmp\GetXqy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

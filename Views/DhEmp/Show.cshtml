@@ -105,7 +105,7 @@
         var Cgr = $('#Cgr').val()
         var Rkzt = $('#Rkzt').val()
         $.ajax({
-            url: "GET api/DhEmp/Getc?Cgdh=" + Cgdh + "Gys=" + Gys + "Pl=" + Pl + "Cgr=" + Cgr + "Rkzt=" + Rkzt,
+            url: "http://localhost:55266/api/DhEmp/Getc?Cgdh=" + Cgdh + "&Gys=" + Gys + "&Pl=" + Pl + "&Cgr=" + Cgr + "&Rkzt=" + Rkzt,
             type: "GET",
             dataType: "json",
             success:
