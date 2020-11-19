@@ -22,8 +22,9 @@ namespace MVC.Controllers
         {
             return View();
         }
-        public ActionResult Xqy()
+        public ActionResult GetXqy(int id)
         {
+            ViewBag.id = id;
             return View();
         }
     }
