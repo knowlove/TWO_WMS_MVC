@@ -4,5 +4,119 @@
     Layout = "~/Views/Shared/Warehouse_homepage.cshtml";
 }
 
-<h2>Management</h2>
+
+<link href="~/Easy Ui/Content/icon 1.css" rel="stylesheet" />
+<link href="~/Easy Ui/Content/easyui 2.css" rel="stylesheet" />
+<script src="~/Easy Ui/jquery.min 3.js"></script>
+<script src="~/Easy Ui/jquery.easyui.min 4.js"></script>
+<script src="~/Easy Ui/easyui-lang-zh_CN 5.js"></script>
+
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
+    <legend>临期报警管理</legend>
+</fieldset>
+
+
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+    <ul class="layui-tab-title">
+        <li class="layui-this">临期产品报警</li>
+        <li><a onclick="location.href='/Home_page/Management2'">临期商品报警</a></li>
+    </ul>
+    <div class="layui-tab-content">
+        @*内容一*@
+        <div class="layui-tab-item layui-show">
+            @*查询框架*@
+            <div style="width:1500px;height:50px;margin-top:10px;border:3px #808080 solid;padding-top:20px;padding-left:30px;margin-bottom:40px">
+                全部仓库:&nbsp;&nbsp;
+                <select id="WName" class="easyui-combobox" name="dept" style="width:150px;"><option>全部仓库</option><option>A仓库</option><option>B仓库</option></select>
+                &nbsp;&nbsp;类别:&nbsp;&nbsp;
+                <select id="CName" class="easyui-combobox" name="dept" style="width:150px;"><option>==请选择==</option><option>苹果</option><option>梨</option><option>西瓜</option><option>哈密瓜</option><option>火龙果</option><option>木瓜</option></select>
+                &nbsp;&nbsp;产品编号:&nbsp;&nbsp;
+                <input id="Coding" class="easyui-textbox" data-options="iconCls:'icon-search'" style="width:100px">
+                &nbsp;&nbsp;产品名称:&nbsp;&nbsp;
+                <input id="Name" data-options="iconCls:'icon-search'" class="easyui-textbox" style="width:100px" />
+                &nbsp;&nbsp;
+                生产日期
+                <input id="Manufacture" class="easyui-datetimebox" name="birthday" data-options="required:true,showSeconds:false" value="3/4/2010 2:3" style="width:150px">
+                至
+                <input id="Valid" class="easyui-datetimebox" name="birthday" data-options="required:true,showSeconds:false" value="3/4/2010 2:3" style="width:150px">
+                <a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a>
+
+            </div>
+            @*table表格*@
+            <table id="dg" style="width:100%"></table>
+
+            @*绑定数据*@
+            <script>
+                //显示
+                $('#dg').datagrid({
+                    url: 'http://localhost:55266/api/WMS_Alaetr/Show',
+                    method: 'get',
+                    pagination: true,
+                    pageSize: 10,
+                    pageList: [10, 20, 50],
+                    columns: [[
+                        { field: 'ck', checkbox: true },
+                        { field: 'Id', title: '序号', width: 100 },
+                        { field: 'WName', title: '仓库', width: 100 },
+                        { field: 'CName', title: '类别', width: 100 },
+                        { field: 'Merchandise', title: '产品信息', width: 290 },
+                        { field: 'Quantity', title: '库存数量', width: 100 },
+                        { field: 'Unit', title: '计量单位', width: 100 },
+                        {
+                            field: 'Manufacture', title: '生产日期', width: 100, formatter: function (value, row, index) {
+                                var date = new Date(value);
+                                return date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
+                            }
+                        },
+                        {
+                            field: 'Valid', title: '有效期至', width: 100, formatter: function (value, row, index) {
+                                var date = new Date(value);
+                                return date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
+                            }
+                        }, { field: 'Expiration', title: '剩余保质期', width: 100 },
+                        { field: 'Shelf', title: '剩余货架期', width: 100 },
+                    ]]
+                });
+
+                //查询
+                $("#btn").click(function () {
+                    $('#dg').datagrid('load', {
+                        WName: $("#WName").val(),
+                        CName: $("#CName").val(),
+                        Coding: $("#Coding").val(),
+                        Name: $("#Name").val(),
+                        Manufacture: $("#Manufacture").val(),
+                        Valid: $("#Valid").val()
+                    });
+                });
+
+            </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        @*内容二*@
+        <div class="layui-tab-item">
+
+
+
+        </div>
+    </div>
+</div>
 
