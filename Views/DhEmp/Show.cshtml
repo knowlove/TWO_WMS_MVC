@@ -55,7 +55,7 @@
 </html>
 <script>
     $(function () {
-        Shows();
+        Showc();
     });
     function Shows() {
         $.ajax({
@@ -76,8 +76,8 @@
                             + "<td>" + this.DhRq + "</td>"
                             + "<td>" + this.DhName + "</td>"
                             + "<td>" + this.DhType + "</td>"
-                            + "<td>" + "<input id=" + this.DhId + " type='button' value='到货详情'" + "onclick= Xqy(" + this.DhId + ")/>" + "<input id=" + this.DhId + " type='button' value='删除'" + "onclick= Del(" + this.DhId + ") />" + "</td>"
-                            + "</tr>";
+                            + "<td>" + "<input id=" + this.DhId + " type='button' value='到货详情'" + "onclick= Xqy(" + this.DhId + ") />" + "<input id=" + this.DhId + " type='button' value='删除'" + "onclick= Del(" + this.DhId + ") />" + "</td>"
+                             + "</tr>";
                     })
                     $("#rd").append(tb);
                 }
@@ -122,11 +122,16 @@
                             + "<td>" + this.DhRq + "</td>"
                             + "<td>" + this.DhName + "</td>"
                             + "<td>" + this.DhType + "</td>"
-                            + "<td>" + "<input id=" + this.DhId + " type='button' value='到货详情'" + "onclick= Xqy(" + this.DhId + ")/>" + "<input id=" + this.DhId + " type='button' value='删除'" + "onclick= Del(" + this.DhId + ") />" + "</td>"
+                            + "<td>" + "<input id=" + this.DhId + " type='button' value='到货详情'" + "onclick= Xqy(" + this.DhId + ") />" + "<input id=" + this.DhId + " type='button' value='删除'" + "onclick= Del(" + this.DhId + ") />" + "</td>"
                             + "</tr>";
                     })
                     $("#rd").append(tb);
                 }
         })
+    }
+
+    //详情
+    function Xqy(DhId) {
+        location.href = '/DhEmp/GetXqy?id=' + DhId
     }
 </script>

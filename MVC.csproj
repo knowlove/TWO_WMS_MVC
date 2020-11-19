@@ -354,6 +354,7 @@
     <Content Include="Views\DhEmp\GetAll.cshtml" />
     <Content Include="Views\DhEmp\Show.cshtml" />
     <Content Include="Views\DhEmp\GetXqy.cshtml" />
+    <Content Include="Views\DhEmp\UpEmp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

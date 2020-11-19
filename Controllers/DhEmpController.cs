@@ -27,5 +27,10 @@ namespace MVC.Controllers
             ViewBag.id = id;
             return View();
         }
+        public ActionResult UpEmp(int id)
+        {
+            ViewBag.id = id;
+            return View();
+        }
     }
 }
