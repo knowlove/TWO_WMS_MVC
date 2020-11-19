@@ -29,7 +29,7 @@
                 全部仓库:&nbsp;&nbsp;
                 <select id="WName" class="easyui-combobox" name="dept" style="width:150px;"><option>全部仓库</option><option>A仓库</option><option>B仓库</option></select>
                 &nbsp;&nbsp;类别:&nbsp;&nbsp;
-                <select id="DC" class="easyui-combobox" name="dept" style="width:150px;"><option>==请选择==</option><option>苹果</option><option>梨</option><option>西瓜</option><option>哈密瓜</option><option>火龙果</option><option>木瓜</option></select>
+                <select id="CName" class="easyui-combobox" name="dept" style="width:150px;"><option>==请选择==</option><option>苹果</option><option>梨</option><option>西瓜</option><option>哈密瓜</option><option>火龙果</option><option>木瓜</option></select>
                 &nbsp;&nbsp;产品编号:&nbsp;&nbsp;
                 <input id="Coding" class="easyui-textbox" data-options="iconCls:'icon-search'" style="width:100px">
                 &nbsp;&nbsp;产品名称:&nbsp;&nbsp;
@@ -82,7 +82,7 @@
                 $("#btn").click(function () {
                     $('#dg').datagrid('load', {
                         WName: $("#WName").val(),
-                        DC: $("#DC").val(),
+                        CName: $("#CName").val(),
                         Coding: $("#Coding").val(),
                         Name: $("#Name").val(),
                         Manufacture: $("#Manufacture").val(),
