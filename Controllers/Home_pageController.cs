@@ -38,7 +38,11 @@ namespace MVC.Controllers
         {
             return View();
         }
-        public ActionResult Management()    //临期报警管理
+        public ActionResult Management()    //临期报警管理（产品）
+        {
+            return View();
+        }
+        public ActionResult Management2()    //临期报警管理（商品）
         {
             return View();
         }
@@ -54,6 +58,10 @@ namespace MVC.Controllers
         {
             return View();
         }
-
+        public ActionResult DropXiang(int id)    //吊牌详情
+        {
+            ViewBag.id = id;
+            return View();
+        }
     }
 }

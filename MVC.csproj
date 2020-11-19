@@ -240,6 +240,10 @@
     <Content Include="images\2.jpg" />
     <Content Include="images\3.jpg" />
     <Content Include="images\4.jpg" />
+    <Content Include="images\baojing.jpg" />
+    <Content Include="images\baojing2.jpg" />
+    <Content Include="images\shuzi2.jpg" />
+    <Content Include="images\shuzi1.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\layui-v2.5.6\layui\font\iconfont.eot" />
@@ -348,6 +352,8 @@
     <Content Include="Views\Home_page\Stocks1.cshtml" />
     <Content Include="Views\Home_page\StocksXiang.cshtml" />
     <Content Include="Views\Home_page\Security1.cshtml" />
+    <Content Include="Views\Home_page\DropXiang.cshtml" />
+    <Content Include="Views\Home_page\Management2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
