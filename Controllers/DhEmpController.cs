@@ -32,5 +32,15 @@ namespace MVC.Controllers
             ViewBag.id = id;
             return View();
         }
+        public ActionResult AddEmp()
+        {
+            return View();
+        }
+
+        public ActionResult Mtk()
+        {
+            return View();
+        }
+
     }
 }
