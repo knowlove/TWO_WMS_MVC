@@ -84,19 +84,22 @@
         })
     }
     function Del(DhId) {
-        $.ajax({
-            url: "http://localhost:55266/api/DhEmp/DelDhEmp?id=" + DhId,
-            type: "POST",
-            dataType: "json",
-            success: function (d) {
-                if (d > 0) {
-                    Shows();
-                } else {
+        if (confirm("确认删除吗？")) {
+            $.ajax({
+                url: "http://localhost:55266/api/DhEmp/DelDhEmp?id=" + DhId,
+                type: "POST",
+                dataType: "json",
+                success: function (d) {
+                    if (d > 0) {
+                        Shows();
+                    } else {
 
-                    alert("删除失败!");
+                        alert("删除失败!");
+                    }
                 }
-            }
-        })
+            })
+
+        }
     }
     function Showc() {
         var Cgdh = $('#Cgdh').val
@@ -129,5 +132,9 @@
                     $("#rd").append(tb);
                 }
         })
+    }
+
+    function Xqy(DhId) {
+        location.href = '/DhEmp/GetXqy?id=' + DhId
     }
 </script>
