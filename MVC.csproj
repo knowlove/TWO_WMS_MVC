@@ -113,6 +113,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DhEmpController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Home_pageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -240,10 +241,6 @@
     <Content Include="images\2.jpg" />
     <Content Include="images\3.jpg" />
     <Content Include="images\4.jpg" />
-    <Content Include="images\baojing.jpg" />
-    <Content Include="images\baojing2.jpg" />
-    <Content Include="images\shuzi2.jpg" />
-    <Content Include="images\shuzi1.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\layui-v2.5.6\layui\font\iconfont.eot" />
@@ -348,12 +345,16 @@
     <Content Include="Views\Home_page\Security.cshtml" />
     <Content Include="Views\Home_page\Spectaculars.cshtml" />
     <Content Include="Views\Home_page\Stocks.cshtml" />
+    <Content Include="Views\Home\Shu.cshtml" />
     <Content Include="Views\Shared\Warehome.cshtml" />
     <Content Include="Views\Home_page\Stocks1.cshtml" />
     <Content Include="Views\Home_page\StocksXiang.cshtml" />
-    <Content Include="Views\Home_page\Security1.cshtml" />
-    <Content Include="Views\Home_page\DropXiang.cshtml" />
-    <Content Include="Views\Home_page\Management2.cshtml" />
+    <Content Include="Views\GetAll.cshtml" />
+    <Content Include="Views\Show.cshtml" />
+    <Content Include="Views\DhEmp\GetAll.cshtml" />
+    <Content Include="Views\DhEmp\Show.cshtml" />
+    <Content Include="Views\DhEmp\GetXqy.cshtml" />
+    <Content Include="Views\DhEmp\UpEmp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
