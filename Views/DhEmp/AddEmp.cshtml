@@ -1,0 +1,76 @@
+﻿
+@{
+    Layout = "~/Views/Shared/Warehouse_homepage.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddEmp</title>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+</head>
+<body>
+    <input type="hidden" value="@ViewBag.ids" id="uid" />
+    <div>
+        供应商:<select id="Gys">
+            <option>歌舞伎町</option>
+            <option>华天美食</option>
+            <option>行天酒下</option>
+
+        </select>&nbsp;&nbsp;&nbsp;&nbsp;
+        卸货货区:<select id="Xhhq">
+            <option>上海一号货区</option>
+            <option>上海二号货区</option>
+            <option>天津一号货区</option>
+            <option>北京一号货区</option>
+
+        </select>&nbsp;&nbsp;&nbsp;&nbsp;
+        温区:<select id="Wq">
+            <option>常温</option>
+            <option>冷冻</option>
+            <option>冷藏</option>
+        </select>&nbsp;&nbsp;&nbsp;&nbsp;<br />
+        选择物料:<input id="Wl" type="button" value="button" onclick="window.open ('/DhEmp/Mtk', 'newwindow', 'height=400, width=600, top=0,left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no',false)" />
+        <div></div>
+        <input id="Button1" type="button" value="提交" onclick="Tj()" />
+    </div>
+    <input  type="text" id="A431"/>
+</body>
+</html>
+<script>
+ 
+    function Tj() {
+        $.ajax({
+            url: "http://localhost:55266/api/DhEmp/AddEmp?id="+@ViewBag.id,
+            type: "GET",
+            dataType: "json",
+            success:
+                function (res) {
+                    var tb = "";
+                    $("#rd").empty();
+                    $(res).each(function () {
+                        console.log(res);
+                        tb += "<tr>"
+                            + "<td>" + this.DhId + "</td>"
+                            + "<td>" + this.DhYlbm + "</td>"
+                            + "<td>" + this.DhYlmc + "</td>"
+                            + "<td>" + this.DhWq + "</td>"
+                            + "<td>" + this.DhYlGg + "</td>"
+                            + "<td>" + this.DhCgsl + "</td>"
+                            + "<td>" + this.DhDj + "</td>"
+                            + "<td>" + this.DhJe + "</td>"
+                            + "<td>" + this.DhBz + "</td>"
+                            + "</tr>";
+                        $("#Dhrq").append(this.DhRq);
+                        $("#Gys").append(this.DhGys);
+                        $("#Kq").append(this.DhHq);
+                    })
+                    $("#rd").append(tb);
+                }
+
+        })
+    }
+
+</script>

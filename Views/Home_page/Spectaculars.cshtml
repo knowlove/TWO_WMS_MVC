@@ -4,5 +4,112 @@
     Layout = "~/Views/Shared/Warehouse_homepage.cshtml";
 }
 
-<h2>Spectaculars</h2>
+<meta charset="utf-8" />
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+<link href="~/Content/layui-v2.5.6/layui/css/layui.css" rel="stylesheet" />
+<script src="~/Content/layui-v2.5.6/layui/layui.all.js"></script>
+<script src="~/Content/layui-v2.5.6/layui/layui.js"></script>
+<!--html 结构   使tr内容进行滚动-->
 
+
+
+
+<div style="width:1300px;height:700px;background-color:black">
+    <div style="width:1200px;height:250px;margin-left:30px;text-align:center">
+        <div style="width:750px;height:250px;background-color:dimgray;float:left">
+            <img src="~/images/baojing.jpg" style="float:left" />
+            <h1 style="color:ghostwhite;float:none;font-weight:900">商品报警</h1>
+            <br />
+            <div style="background-color:azure;height:30px;width:495px;float:left;margin-left:5px">已上架</div>
+            <div style="background-color:azure;height:30px;width:235px;margin-left:3px;float:right;margin-right:5px">未上架</div>
+            <img src="~/images/shuzi1.jpg" style="width:750px;height:150px" />
+        </div>
+        <div style="width: 347px;height: 250px;background-color: dimgray;margin-left: 3px;float: right">
+            <img src="~/images/baojing2.jpg" style="float:left" />
+            <h1 style="color:ghostwhite;float:none;font-weight:900">产品报警</h1>
+            <img src="~/images/shuzi2.jpg" style="width:347px;height:200px" />
+        </div>
+    </div>
+    <div style=" width: 1200px; height: 400px; margin-left: 30px">
+        <div class="divWarning">
+            <div class="layui-table" style="width: 100%; padding-right: 17px;">
+                <table style=" width: 1218px" >
+                    <thead>
+                        <tr>
+                            <td>所在仓库</td>
+                            <td>商品品类</td>
+                            <td>商品编码</td>
+                            <td>商品名称</td>
+                            <td>库存量</td>
+                            <td>冻结量</td>
+                            <td>可用库存</td>
+                            <td>低于安全库存</td>
+                        </tr>
+                    </thead>
+                    <tbody id="tb">
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ml>
+    <script>
+
+        show();
+
+        function show() {
+            $.ajax({
+                url: 'http://localhost:55266/api/WMS_Alaetr/BaojingShow',
+                type: 'get',
+                dataType: 'json',
+                success: function (data) {
+                    $("#tb").empty();
+                    $(data).each(function () {
+                        $("#tb").append(
+                            "<tr>" +
+                            "<td>" + this.WName + "</td>" +
+                            "<td>" + this.CName + "</td>" +
+                            "<td>" + this.Coding + "</td>" +
+                            "<td>" + this.Name + "</td>" +
+                            "<td>" + this.Quantity + "</td>" +
+                            "<td>" + this.Congelation + "</td>" +
+                            "<td>" + this.Available + "</td>" +
+                            "<td>" + this.Below + "</td>" +
+                            "</tr>"
+                        );
+                    });
+                }
+            })
+        }
+
+
+
+        $(function () {
+            var $this = $(".divWarning");   //获取 divWarning  （用来定位需要滚动的列表） 由于我生成的表格是使用layui框架生成的，所以需要在table外面嵌套一个div
+            var scrollTimer;
+            $this.hover(function () {
+                clearInterval(scrollTimer);     //清除滚动
+            }, function () {
+                scrollTimer = setInterval(function () {
+                    scrollNews($this);
+                }, 2000); //每条列表之间滚动的间隔请改此处数字，数值越大，间隔越长
+            }).trigger("mouseout");
+        });
+
+        function scrollNews(obj) {
+            var $layuitable = obj.find(".layui-table:last");   //定位滚动的dom
+            var lineHeight = 38;//因为行高是38px  (列表内容高38px)
+            $layuitable.animate({
+                "margin-top": -lineHeight + "px"     //向上移动
+            }, 2000, function () { //每条新闻从出现到消失的时间请改此处数字，数值越小，消失的越快
+                $layuitable.css({
+                    "margin-top": "200px"       //移动到设定高度后更改最高的位置，获取第一行tr追加到tbody最后
+                }).find("tr:first").appendTo(obj.find("tbody:first"));
+            });
+        }
+    </script>

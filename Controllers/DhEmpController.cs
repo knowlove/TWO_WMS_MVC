@@ -18,5 +18,29 @@ namespace MVC.Controllers
         {
              return View();
         }
+        public ActionResult Show()
+        {
+            return View();
+        }
+        public ActionResult GetXqy(int id)
+        {
+            ViewBag.id = id;
+            return View();
+        }
+        public ActionResult UpEmp(int id)
+        {
+            ViewBag.id = id;
+            return View();
+        }
+        public ActionResult AddEmp()
+        {
+            return View();
+        }
+
+        public ActionResult Mtk()
+        {
+            return View();
+        }
+
     }
 }

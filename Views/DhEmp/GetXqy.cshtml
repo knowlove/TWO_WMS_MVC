@@ -1,0 +1,108 @@
+﻿
+@{
+    Layout = "~/Views/Shared/Warehouse_homepage.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <title>GetXqy</title>
+</head>
+<body>
+    <input type="hidden" value="@ViewBag.ids" id="uid" />
+    <div>
+        到货日期:<label id="Dhrq"></label>&nbsp;&nbsp;&nbsp;&nbsp;
+        供应商:<label id="Gys"></label>&nbsp;&nbsp;&nbsp;&nbsp;
+        卸货库区:<label id="Kq"></label>&nbsp;&nbsp;&nbsp;&nbsp;
+        <br />
+        <table>
+
+            <thead>
+                <tr>
+                    <td>序号</td>
+                    <td>原料编码</td>
+                    <td>原料名称</td>
+                    <td>存放温区</td>
+                    <td>原料规格</td>
+                    <td>采购数量</td>
+                    <td>采购单价</td>
+                    <td>金额(元)</td>
+                    <td>备注</td>
+                </tr>
+
+            </thead>
+            <thead id="rd">
+                @*<tr>
+                    <td id="Xh"></td>
+                    <td id="Ylbm"></td>
+                    <td id="Ylmc"></td>
+                    <td id="Cfwq"></td>
+                    <td id="Ylgg"></td>
+                    <td id="Cgsl"></td>
+                    <td id="Cgdj"></td>
+                    <td id="Je"></td>
+                    <td id="Bz"></td>
+                </tr>*@
+            </thead>
+        </table>
+        <input id="Button1" type="button" value="编辑" onclick="Bj()" />
+    </div>
+</body>
+</html>
+<script>
+
+    $(function () {
+        Showc();
+    });
+    ///显示
+    function Showc() {
+        var ids = $("#uid").val();
+        $.ajax({
+            url: "http://localhost:55266/api/DhEmp/GetXqy?id="+@ViewBag.id,
+            type: "GET",
+            dataType: "json",
+            success:
+                function (res) {
+                    var tb = "";
+                    $("#rd").empty();
+                    $(res).each(function () {
+                        console.log(res);
+                        tb += "<tr>"
+                            + "<td>" + this.DhId + "</td>"
+                            + "<td>" + this.DhYlbm + "</td>"
+                            + "<td>" + this.DhYlmc + "</td>"
+                            + "<td>" + this.DhWq + "</td>"
+                            + "<td>" + this.DhYlGg + "</td>"
+                            + "<td>" + this.DhCgsl + "</td>"
+                            + "<td>" + this.DhDj + "</td>"
+                            + "<td>" + this.DhJe + "</td>"
+                            + "<td>" + this.DhBz + "</td>"
+                            + "</tr>";
+                        $("#Dhrq").append(this.DhRq);
+                        $("#Gys").append(this.DhGys);
+                        $("#Kq").append(this.DhHq);
+                    })
+                    $("#rd").append(tb);
+                }
+
+        })
+    }
+
+    //详情
+    function Xqy(DhId) {
+        location.href = '/DhEmp/UpEmp?id=' + DhId
+    }
+</script>
+
+@*      ("#Xh  ").text(res.DhId);
+    $   ("#Ylbm").val(this.DhYlbm);
+       $("#Ylmc").val(this.DhYlmc);
+       $("#Cfwq").val(this.DhWq);
+       $("#Ylgg").val(this.DhYlGg);
+       $("#Cgsl").val(this.DhCgsl);
+       $("#Cgdj").val(this.DhDj);
+       $("#Je  ").val(this.DhJe);
+       $("#Bz  ").val(this.DhBz);*@

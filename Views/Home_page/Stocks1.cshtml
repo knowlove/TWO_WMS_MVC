@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Stocks";
+    ViewBag.Title = "Stocks1";
     Layout = "~/Views/Shared/Warehouse_homepage.cshtml";
 }
 
@@ -9,25 +9,24 @@
 <script src="~/Easy Ui/jquery.min 3.js"></script>
 <script src="~/Easy Ui/jquery.easyui.min 4.js"></script>
 <script src="~/Easy Ui/easyui-lang-zh_CN 5.js"></script>
-
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
     <legend>总库存查询</legend>
 </fieldset>
 
-<div id="win" class="easyui-window" title="总库存" style="width:600px;height:400px" data-options="iconCls:'icon-save',modal:true">
-    库存查询
-    <br /> <br />
-    产品：生产二部数量一列；操作中的库存明细只显示”标准仓“里的明细；
-</div>
-
 
 <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
     <ul class="layui-tab-title">
-        <li class="layui-this">产品总库存</li>
-        <li><a onclick="location.href='/Home_page/Stocks1'">商品总库存</a></li>
+        <li><a onclick="location.href='/Home_page/Stocks'">产品总库存</a></li>
+        <li class="layui-this"> 商品总库存</li>
     </ul>
     <div class="layui-tab-content">
         @*内容一*@
+        <div class="layui-tab-item">
+
+
+
+        </div>
+        @*内容二*@
         <div class="layui-tab-item layui-show">
             @*查询框架*@
             <div style="width:1500px;height:50px;margin-top:10px;border:3px #808080 solid;padding-top:20px;padding-left:30px;margin-bottom:40px">
@@ -41,8 +40,6 @@
                 <input id="Name" data-options="iconCls:'icon-search'" class="easyui-textbox" style="width:100px" />
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a>
-                <a id="daoru" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">导入</a>
-                <a id="daochu" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">导出</a>
 
             </div>
             @*table表格*@
@@ -78,7 +75,6 @@
                 });
 
                 function Edit(Id) {
-
                     location.href = "StocksXiang?Id=" + Id;
                 }
 
@@ -92,55 +88,9 @@
                     });
                 });
 
-
-                //导出
-                $("#daochu").click(function () {
-                    $.ajax({
-                        url: "http://localhost:55266/api/WMS_Alaetr/ExportExcel",
-                        data: {
-                            Coding: $("#Coding").val(),
-                            Name: $("#Name").val()
-                        },
-                        type: "GET",
-                        dataType: "text",
-                        success: function (d) {
-                            if (d > 0) {
-                                alert("导出成功！");
-                            }
-                            else {
-                                alert("导出失败！");
-                            }
-                        }
-                    })
-                });
-                //导入
-                $("#daoru").click(function () {
-                    $.ajax({
-                        url: "http://localhost:55266/api/WMS_Alaetr/ImportExcel",
-                        type: "post",
-                        dataType: "JSON",
-                        success: function (d) {
-                            $('#dg').datagrid('loadData', d);
-                        }
-                    })
-                });
-
-
             </script>
 
-
-
-
-
-
-
-
         </div>
-        @*内容二*@
-        <div class="layui-tab-item">
 
-
-
-        </div>
     </div>
 </div>

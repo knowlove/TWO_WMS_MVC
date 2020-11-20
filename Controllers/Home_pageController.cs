@@ -9,7 +9,7 @@ namespace MVC.Controllers
     public class Home_pageController : Controller
     {
         // GET: Home_page
-        public ActionResult Groupbooking()    //拼团库存预警表
+        public ActionResult Groupbooking()    //位移中查询
         {
             return View();
         }
@@ -17,7 +17,20 @@ namespace MVC.Controllers
         {
             return View();
         }
-        public ActionResult Security()    //安全库存预警
+        public ActionResult StocksXiang(int id)    //总库存查询详情
+        {
+            ViewBag.id = id;
+            return View();
+        }
+        public ActionResult Stocks1()    //总库存查询
+        {
+            return View();
+        }
+        public ActionResult Security()    //安全库存预警（产品）
+        {
+            return View();
+        }
+        public ActionResult Security1()    //安全库存预警（商品）
         {
             return View();
         }
@@ -25,7 +38,11 @@ namespace MVC.Controllers
         {
             return View();
         }
-        public ActionResult Management()    //临期报警管理
+        public ActionResult Management()    //临期报警管理（产品）
+        {
+            return View();
+        }
+        public ActionResult Management2()    //临期报警管理（商品）
         {
             return View();
         }
@@ -41,6 +58,10 @@ namespace MVC.Controllers
         {
             return View();
         }
-
+        public ActionResult DropXiang(int id)    //吊牌详情
+        {
+            ViewBag.id = id;
+            return View();
+        }
     }
 }
