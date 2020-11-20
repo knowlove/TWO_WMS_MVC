@@ -116,6 +116,7 @@
     <Compile Include="Controllers\DhEmpController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Home_pageController.cs" />
+    <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -354,6 +355,7 @@
     <Content Include="Views\DhEmp\GetAll.cshtml" />
     <Content Include="Views\DhEmp\Show.cshtml" />
     <Content Include="Views\DhEmp\GetXqy.cshtml" />
+    <Content Include="Views\Task\TaskAdd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
