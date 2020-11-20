@@ -349,12 +349,12 @@
     <Content Include="Views\Shared\Warehome.cshtml" />
     <Content Include="Views\Home_page\Stocks1.cshtml" />
     <Content Include="Views\Home_page\StocksXiang.cshtml" />
-    <Content Include="Views\GetAll.cshtml" />
-    <Content Include="Views\Show.cshtml" />
     <Content Include="Views\DhEmp\GetAll.cshtml" />
     <Content Include="Views\DhEmp\Show.cshtml" />
     <Content Include="Views\DhEmp\GetXqy.cshtml" />
     <Content Include="Views\DhEmp\UpEmp.cshtml" />
+    <Content Include="Views\DhEmp\AddEmp.cshtml" />
+    <Content Include="Views\DhEmp\Mtk.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
