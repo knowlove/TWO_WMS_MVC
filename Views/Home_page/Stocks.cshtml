@@ -14,6 +14,12 @@
     <legend>总库存查询</legend>
 </fieldset>
 
+<div id="win" class="easyui-window" title="总库存" style="width:600px;height:400px" data-options="iconCls:'icon-save',modal:true">
+    库存查询
+    <br /> <br />
+    产品：生产二部数量一列；操作中的库存明细只显示”标准仓“里的明细；
+</div>
+
 
 <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
     <ul class="layui-tab-title">
@@ -35,6 +41,8 @@
                 <input id="Name" data-options="iconCls:'icon-search'" class="easyui-textbox" style="width:100px" />
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a>
+                <a id="daoru" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">导入</a>
+                <a id="daochu" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">导出</a>
 
             </div>
             @*table表格*@
@@ -50,8 +58,7 @@
                     pageSize: 10,
                     pageList: [10, 20, 50],
                     columns: [[
-                        { field: 'ck', checkbox: true },
-                        { field: 'Id', title: '序号', width: 100 },
+                        { field: 'Id', title: '序号', width: 80 },
                         { field: 'WName', title: '仓库', width: 100 },
                         { field: 'CName', title: '类别', width: 100 },
                         { field: 'Coding', title: '产品编号', width: 100 },
@@ -71,7 +78,7 @@
                 });
 
                 function Edit(Id) {
-                    
+
                     location.href = "StocksXiang?Id=" + Id;
                 }
 
@@ -85,18 +92,41 @@
                     });
                 });
 
+
+                //导出
+                $("#daochu").click(function () {
+                    $.ajax({
+                        url: "http://localhost:55266/api/WMS_Alaetr/ExportExcel",
+                        data: {
+                            Coding: $("#Coding").val(),
+                            Name: $("#Name").val()
+                        },
+                        type: "GET",
+                        dataType: "text",
+                        success: function (d) {
+                            if (d > 0) {
+                                alert("导出成功！");
+                            }
+                            else {
+                                alert("导出失败！");
+                            }
+                        }
+                    })
+                });
+                //导入
+                $("#daoru").click(function () {
+                    $.ajax({
+                        url: "http://localhost:55266/api/WMS_Alaetr/ImportExcel",
+                        type: "post",
+                        dataType: "JSON",
+                        success: function (d) {
+                            $('#dg').datagrid('loadData', d);
+                        }
+                    })
+                });
+
+
             </script>
-
-
-
-
-
-
-
-
-
-
-
 
 
 

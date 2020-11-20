@@ -15,12 +15,14 @@
                 <li class="layui-nav-item"><a href="">控制台</a></li>
                 <li class="layui-nav-item"><a href="">商品管理</a></li>
                 <li class="layui-nav-item"><a href="">用户</a></li>
+                <li class="layui-nav-item"><a href="/Home_page/Stocks">仓库</a></li>
                 <li class="layui-nav-item">
                     <a href="javascript:;">其它系统</a>
                     <dl class="layui-nav-child">
                         <dd><a href="">邮件管理</a></dd>
                         <dd><a href="">消息管理</a></dd>
                         <dd><a href="">授权管理</a></dd>
+                        <dd><div id="cc" class="easyui-calendar" style="width:180px;height:180px;"></div></dd>
                     </dl>
                 </li>
             </ul>
@@ -43,7 +45,7 @@
             <div class="layui-side-scroll">
                 <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
                 <ul class="layui-nav layui-nav-tree" lay-filter="test">
-                    <li class="layui-nav-item layui-nav-itemed">
+                    <li class="layui-nav-item ">
                         <a class="" href="javascript:;">到货管理</a>
                         <dl class="layui-nav-child">
                             <dd><a href="/DhEmp/GetAll">到货登记</a></dd>
@@ -73,11 +75,10 @@
                             <dd><a href="javascript:;">调拔单审核</a></dd>
                         </dl>
                     </li>
-                    <li class="layui-nav-item">
+                    <li class="layui-nav-item layui-nav-itemed">
                         <a href="javascript:;">库存管理</a>
                         <dl class="layui-nav-child">
                             <dd><a href="/Home_page/Stocks">总库存查询</a></dd>
-                            <dd><a href="/Home_page/">采购入库</a></dd>
                             <dd><a href="/Home_page/Security">安全库存预警</a></dd>
                             <dd><a href="/Home_page/Groupbooking">移位中查询</a></dd>
                             <dd><a href="/Home_page/Spectaculars">库存报警看板</a></dd>
@@ -141,16 +142,15 @@
 
         <div class="layui-body">
             <!-- 内容主体区域 -->
-            <div style="padding: 15px;">@RenderBody()</div>
+            <div style="padding: 15px">@RenderBody()</div>
         </div>
 
         <div class="layui-footer" style="background: linear-gradient(to top right, #CDDC39, #8BC34A, #FFEB3B)">
             <marquee>
-                <p >
-                    True courage is about knowing not when to take a life, but when to spare one.
-                    真正的勇气不在于取人性命，而在于宽恕。
-                    You can choose whatever path you want.
-                    你可以选择任何你想走的路。
+                <p>
+
+                    You can choose whatever path you want.It's never too late to be the person you want to be.
+                    你可以选择任何你想走的路,去做你想成为的那个人永远都不会晚。
                 </p>
 
             </marquee>
