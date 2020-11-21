@@ -58,6 +58,7 @@
         Showc();
     });
     function Shows() {
+        var a = 1;
         $.ajax({
             url: "http://localhost:55266/api/DhEmp/GetAll",
             type: "GET",
@@ -69,7 +70,8 @@
                     $(res).each(function () {
                         console.log(res);
                         tb += "<tr>"
-                            + "<td>" + this.DhId + "</td>"
+                            + "<td>" + a + "</td>"
+                        a++;
                             + "<td>" + this.DhCgdh + "</td>"
                             + "<td>" + this.DhGys + "</td>"
                             + "<td>" + this.DhPl + "</td>"
@@ -91,7 +93,7 @@
                 dataType: "json",
                 success: function (d) {
                     if (d > 0) {
-                        Shows();
+                        location.reload()
                     } else {
 
                         alert("删除失败!");
@@ -107,6 +109,7 @@
         var Pl = $('#Cppl').val()
         var Cgr = $('#Cgr').val()
         var Rkzt = $('#Rkzt').val()
+        var a = 1;
         $.ajax({
             url: "http://localhost:55266/api/DhEmp/Getc?Cgdh=" + Cgdh + "&Gys=" + Gys + "&Pl=" + Pl + "&Cgr=" + Cgr + "&Rkzt=" + Rkzt,
             type: "GET",
@@ -118,7 +121,7 @@
                     $(res).each(function () {
                         console.log(res);
                         tb += "<tr>"
-                            + "<td>" + this.DhId + "</td>"
+                            + "<td>" + a + "</td>"
                             + "<td>" + this.DhCgdh + "</td>"
                             + "<td>" + this.DhGys + "</td>"
                             + "<td>" + this.DhPl + "</td>"
@@ -127,6 +130,7 @@
                             + "<td>" + this.DhType + "</td>"
                             + "<td>" + "<input id=" + this.DhId + " type='button' value='到货详情'" + "onclick= Xqy(" + this.DhId + ") />" + "<input id=" + this.DhId + " type='button' value='删除'" + "onclick= Del(" + this.DhId + ") />" + "</td>"
                             + "</tr>";
+                        a++
                     })
                     $("#rd").append(tb);
                 }
