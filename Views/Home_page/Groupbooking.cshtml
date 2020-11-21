@@ -35,8 +35,16 @@
     <a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a>
 
 </div>
+
 @*table表格*@
 <table id="dg" style="width:100%"></table>
+
+
+<div id="win" class="easyui-window" title="移位中查询" style="width:600px;height:400px" data-options="iconCls:'icon-save',modal:true">
+    查看在调拨业务中移动的数据
+</div>
+
+
 
 @*绑定数据*@
 <script>
@@ -48,7 +56,6 @@
         pageSize: 10,
         pageList: [10, 20, 50],
         columns: [[
-            { field: 'ck', checkbox: true },
             { field: 'Id', title: '序号', width: 100 },
             { field: 'WName', title: '所在仓库', width: 100 },
             { field: 'CName', title: '物品类别', width: 100 },
@@ -57,7 +64,7 @@
             { field: 'Specification', title: '物品规格', width: 100 },
             { field: 'S_Odd', title: '下架货位', width: 130 },
             { field: 'S_Total', title: '数量', width: 100 },
-             { field: 'Unit', title: '计量单位', width: 100 },
+            { field: 'Unit', title: '计量单位', width: 100 },
             { field: 'S_Sent', title: '移位时间', width: 100 },
             { field: 'S_Dispatchers', title: '移位管理员', width: 100 },
         ]]
