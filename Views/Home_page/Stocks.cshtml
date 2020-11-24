@@ -14,11 +14,6 @@
     <legend>总库存查询</legend>
 </fieldset>
 
-<div id="win" class="easyui-window" title="总库存" style="width:600px;height:400px" data-options="iconCls:'icon-save',modal:true">
-    库存查询
-    <br /> <br />
-    产品：生产二部数量一列；操作中的库存明细只显示”标准仓“里的明细；
-</div>
 
 
 <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
@@ -32,9 +27,9 @@
             @*查询框架*@
             <div style="width:1500px;height:50px;margin-top:10px;border:3px #808080 solid;padding-top:20px;padding-left:30px;margin-bottom:40px">
                 全部仓库:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <select id="WName" class="easyui-combobox" name="dept" style="width:150px;"><option>全部仓库</option><option>A仓库</option><option>B仓库</option></select>
+                <select id="WName" class="easyui-combobox" name="dept" style="width:150px;"><option> </option><option>A仓库</option><option>B仓库</option></select>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类别:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <select id="CName" class="easyui-combobox" name="dept" style="width:150px;"><option>==请选择==</option><option>苹果</option><option>梨</option><option>西瓜</option><option>哈密瓜</option><option>火龙果</option><option>木瓜</option></select>
+                <select id="CName" class="easyui-combobox" name="dept" style="width:150px;"><option> </option><option>苹果</option><option>梨</option><option>西瓜</option><option>哈密瓜</option><option>火龙果</option><option>木瓜</option></select>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;产品编号:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <input id="Coding" class="easyui-textbox" data-options="iconCls:'icon-search'" style="width:100px">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;产品名称:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -97,10 +92,6 @@
                 $("#daochu").click(function () {
                     $.ajax({
                         url: "http://localhost:55266/api/WMS_Alaetr/ExportExcel",
-                        data: {
-                            Coding: $("#Coding").val(),
-                            Name: $("#Name").val()
-                        },
                         type: "GET",
                         dataType: "text",
                         success: function (d) {

@@ -19,9 +19,9 @@
 @*查询框架*@
 <div style="width:1500px;height:50px;margin-top:10px;border:3px #808080 solid;padding-top:20px;padding-left:30px;margin-bottom:40px">
     仓库:&nbsp;&nbsp;&nbsp;
-    <select id="WName" class="easyui-combobox" name="dept" style="width:150px;"><option>全部仓库</option><option>A仓库</option><option>B仓库</option></select>
+    <select id="WName" class="easyui-combobox" name="dept" style="width:150px;"><option> </option><option>A仓库</option><option>B仓库</option></select>
     &nbsp;&nbsp;&nbsp;类别:&nbsp;&nbsp;&nbsp;
-    <select id="CName" class="easyui-combobox" name="dept" style="width:150px;"><option></option><option>苹果</option><option>梨</option><option>西瓜</option><option>哈密瓜</option><option>火龙果</option><option>木瓜</option></select>
+    <select id="CName" class="easyui-combobox" name="dept" style="width:150px;"><option>  </option><option>苹果</option><option>梨</option><option>西瓜</option><option>哈密瓜</option><option>火龙果</option><option>木瓜</option></select>
     &nbsp;&nbsp;&nbsp;物品编号:&nbsp;&nbsp;&nbsp;
     <input id="Coding" class="easyui-textbox" data-options="iconCls:'icon-search'" style="width:100px">
     &nbsp;&nbsp;&nbsp;物品名称:&nbsp;&nbsp;&nbsp;
@@ -33,16 +33,13 @@
     <input id="S_Entry" class="easyui-datetimebox" name="birthday" data-options="required:true,showSeconds:false" value="3/4/2010 2:3" style="width:150px" placeholder="截止时间">
 
     <a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a>
-
 </div>
 
 @*table表格*@
 <table id="dg" style="width:100%"></table>
 
 
-<div id="win" class="easyui-window" title="移位中查询" style="width:600px;height:400px" data-options="iconCls:'icon-save',modal:true">
-    查看在调拨业务中移动的数据
-</div>
+
 
 
 
@@ -81,5 +78,4 @@
             S_Entry: $("#S_Entry").val(),
         });
     });
-
 </script>

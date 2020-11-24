@@ -17,15 +17,13 @@
 <input id="Coding" class="easyui-textbox" data-options="iconCls:'icon-search'" style="width:100px" placeholder="请输入" />
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a>
+
 <br />
 <br />
 <br />
-<div id="win" class="easyui-window" title="吊牌查询" style="width:600px;height:400px" data-options="iconCls:'icon-save',modal:true">
-    查询，查看吊牌的使用记录和吊牌的使用记录。
-</div>
 
 @*table表格*@
-<table id="dg" style="width:100%" ></table>
+<table id="dg" style="width:100%"></table>
 
 @*绑定数据*@
 <script>
@@ -76,6 +74,7 @@
             Coding: $("#Coding").val(),
         });
     });
+
 
 </script>
 
