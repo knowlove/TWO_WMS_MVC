@@ -37,9 +37,41 @@ namespace MVC.Controllers
             ViewBag.id = id;
             return View();
         }
-
+        /// <summary>
+        /// 发配区
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Area()
         {
+            return View();
+        }
+
+        /// <summary>
+        /// 入库
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Stor()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// 补货需求列表
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Rep()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// 补货单列表详情
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Xq(int id)
+        {
+            ViewBag.id = id;
             return View();
         }
 

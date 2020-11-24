@@ -1,9 +1,10 @@
 ﻿
 @{
     ViewBag.Title = "调拨审核";
+    Layout = "~/Views/Shared/Warehouse_homepage.cshtml";
 }
 
-<h2></h2>
+<h2>调拨审核</h2>
 
 <script src="~/Scripts/jquery-3.4.1.js"></script>
 <script src="~/Content/layui-v2.5.6/layui/layui.js"></script>
@@ -11,9 +12,15 @@
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
 <link href="~/Content/layui-v2.5.6/layui/css/layui.css" rel="stylesheet" />
 <input id="id" type="hidden" value="@ViewBag.id" />
-
+<br />
+<div>
+    <button type="button" class="layui-btn layui-btn-primary" style="margin-left:1200px;" onclick="Fh()">
+        <i class="layui-icon">&#xe65c;</i> 返回
+    </button>
+</div>
+<br />
 <table class="table table-bordered text-center">
-    <tr style="background-color:#f9f4da">
+    <tr style="background-color: #f9f4da">
         <td>序号</td>
         <td>物品编码</td>
         <td>物品名称</td>
@@ -82,10 +89,10 @@
             dataType: 'json',
             success: function (d) {
                 if (d > 0) {
-                    alert("审核通过");
+                    layer.msg('审核通过');
                     location.href = '/Redeploy/Index';
                 } else {
-                    alert("审核失败");
+                    layer.msg('审核失败');
                     return;
                 }
             }
@@ -102,13 +109,17 @@
             dataType: 'json',
             success: function (d) {
                 if (d > 0) {
-                    alert("审核未通过");
+                    layer.msg('审核未通过');
                     location.href = '/Redeploy/Index';
                 } else {
-                    alert("审核失败");
+                    layer.msg('审核未通过');
                     return;
                 }
             }
         })
+    }
+    //返回
+    function Fh() {
+        location.href = '/Redeploy/Index';
     }
 </script>
