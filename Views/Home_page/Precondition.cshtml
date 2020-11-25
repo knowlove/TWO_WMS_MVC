@@ -4,5 +4,69 @@
     Layout = "~/Views/Shared/Warehouse_homepage.cshtml";
 }
 
-<h2>Precondition</h2>
+<link href="~/Easy Ui/Content/icon 1.css" rel="stylesheet" />
+<link href="~/Easy Ui/Content/easyui 2.css" rel="stylesheet" />
+<script src="~/Easy Ui/jquery.min 3.js"></script>
+<script src="~/Easy Ui/jquery.easyui.min 4.js"></script>
+<script src="~/Easy Ui/easyui-lang-zh_CN 5.js"></script>
 
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
+    <legend>前置仓库存查询</legend>
+</fieldset>
+
+
+
+@*查询框架*@
+<div style="width:1500px;height:50px;margin-top:20px;border:3px #808080 solid;padding-top:20px;padding-left:30px;margin-bottom:40px">
+    全部仓库:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <select id="WName" class="easyui-combobox" name="dept" style="width:150px;"><option> </option><option>A仓库</option><option>B仓库</option></select>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类别:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <select id="DC" class="easyui-combobox" name="dept" style="width:150px;"><option> </option><option>苹果</option><option>梨</option><option>西瓜</option><option>哈密瓜</option><option>火龙果</option><option>木瓜</option></select>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;产品编号:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input id="Coding" class="easyui-textbox" data-options="iconCls:'icon-search'" style="width:100px">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;产品名称:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input id="Name" data-options="iconCls:'icon-search'" class="easyui-textbox" style="width:100px" />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a>
+
+</div>
+@*table表格*@
+<table id="dg" style="width:100%"></table>
+
+@*绑定数据*@
+<script>
+    //显示
+    $('#dg').datagrid({
+        url: 'http://localhost:55266/api/WMS_Alaetr/Show',
+        method: 'get',
+        pagination: true,
+        pageSize: 10,
+        pageList: [10, 20, 50],
+        columns: [[
+            { field: 'ck', checkbox: true },
+            { field: 'Id', title: '序号', width: 100 },
+            { field: 'WName', title: '仓库', width: 150 },
+            { field: 'CName', title: '类别', width: 150 },
+            { field: 'Coding', title: '产品编号', width: 150 },
+            { field: 'Name', title: '产品名称', width: 200 },
+            { field: 'Specification', title: '产品规格', width: 150 },
+            { field: 'Quantity', title: '库存数量', width: 150 },
+            { field: 'Unit', title: '计量单位', width: 180 },
+        ]]
+    });
+
+    function Edit(Id) {
+        location.href = "StocksXiang?Id=" + Id;
+    }
+
+    //查询
+    $("#btn").click(function () {
+        $('#dg').datagrid('load', {
+            WName: $("#WName").val(),
+            DC: $("#DC").val(),
+            Coding: $("#Coding").val(),
+            Name: $("#Name").val()
+        });
+    });
+
+</script>

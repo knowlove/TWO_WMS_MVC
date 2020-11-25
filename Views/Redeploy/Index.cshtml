@@ -1,0 +1,200 @@
+﻿
+@{
+    ViewBag.Title = "调拨列表";
+    Layout = "~/Views/Shared/Warehouse_homepage.cshtml";
+}
+
+<h2>调拨列表</h2>
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Content/layui-v2.5.6/layui/layui.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/layui-v2.5.6/layui/css/layui.css" rel="stylesheet" />
+
+
+<br />
+<div>
+    调出仓库:<div class="layui-input-inline layui-form">
+        <select id="Dc" name="modules" lay-verify="required" lay-search="">
+            <option value="-1">--请选择--</option>
+        </select>
+    </div>
+    调入仓库:<div class="layui-input-inline layui-form">
+        <select id="Dr" name="modules" lay-verify="required" lay-search="">
+            <option value="-1">--请选择--</option>
+        </select>
+    </div>
+    商品编码:<div class="layui-inline">
+        <input class="layui-input form-control" name="id" id="Bm" autocomplete="off">
+    </div>
+    商品名称:<div class="layui-inline">
+        <input class="layui-input form-control" name="id" id="Mc" autocomplete="off">
+    </div>
+    <br />
+    调拨日期:<div class="layui-inline"><input class="layui-input form-control" id="Rq" type="date" /></div>
+    调拨单号:<div class="layui-inline">
+        <input class="layui-input form-control" name="id" id="Dh" autocomplete="off">
+    </div>
+    <button type="button" class="layui-btn layui-btn-primary" onclick="Show()">
+        <i class="layui-icon">&#xe615;</i> 查找
+    </button>
+
+</div>
+<br />
+<table class="table table-bordered text-center">
+    <tr style="background-color:#f9f4da">
+        <td>序号</td>
+        <td>调拨单号</td>
+        <td>调出仓库</td>
+        <td>调入仓库</td>
+        <td>调拨日期</td>
+        <td>调拨人</td>
+        <td>审核状态</td>
+        <td>调拨状态</td>
+        <td>装框数量</td>
+        <td>操作</td>
+    </tr>
+    <tbody id="tb"></tbody>
+</table>
+<div style="margin-left:35%;">
+    <table>
+        <tr>
+            <td><input type="button" value="首页" class="layui-btn layui-btn-primary" onclick="Show('Frist')" /></td>
+            <td><input type="button" value="上一页" class="layui-btn layui-btn-primary" onclick="Show('Prev')" /></td>
+            <td><input type="button" value="下一页" class="layui-btn layui-btn-primary" onclick="Show('Next')" /></td>
+            <td>
+                <input type="button" class="layui-btn layui-btn-primary" value="尾页" onclick="Show('Last')" />
+                <input type="hidden" value="1" id="pageindex" />
+            </td>
+
+        </tr>
+    </table>
+</div>
+
+<script>
+    //文档就绪函数
+    $(function () {
+        //调出仓库下拉
+        layui.use('form', function () {
+            var form = layui.form;
+            $.ajax({
+                url: 'http://localhost:55266/api/Redeploy/GetWarehouses',
+                async: false,
+                success: function (data) {
+                    $.each(data, function (index, item) {
+                        $('#Dc').append(new Option(item.W_Name, item.W_Id));
+                    });
+                    layui.form.render("select");
+                }
+            })
+        });
+        //调入仓库下拉
+        layui.use('form', function () {
+            var form = layui.form;
+            $.ajax({
+                url: 'http://localhost:55266/api/Redeploy/GetTransfers',
+                async: false,
+                success: function (data) {
+                    $.each(data, function (index, item) {
+                        $('#Dr').append(new Option(item.T_Name, item.T_Id));
+                    });
+                    layui.form.render("select");
+                }
+            })
+        });
+        //显示
+        Show();
+    })
+
+    function Show(page) {
+        var we = 1;
+        switch (page) {
+            case 'Frist':
+                $("#pageindex").val(1);
+                break;
+            case 'Prev':
+                $("#pageindex").val(Number($("#pageindex").val()) - Number(1));
+                break;
+            case 'Next':
+                $("#pageindex").val(Number($("#pageindex").val()) + Number(1));
+                break;
+            case 'Last':
+                $("#pageindex").val(we);
+                break;
+        }
+        var obj = {};
+        obj.pageindex = $("#pageindex").val();
+        obj.pagesize = 2;
+        $.ajax({
+            url: 'http://localhost:55266/api/Redeploy/GetRedeploys',
+            async: false,
+            data: { Dc: $("#Dc").val(), Dr: $("#Dr").val(), Bm: $("#Bm").val(), Mc: $("#Mc").val(), Rq: $("#Rq").val(), Dh: $("#Dh").val(), pageindex: obj.pageindex, pagesize: obj.pagesize },
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+
+                $("#tb").empty();
+                $(data).each(function () {
+                    var R_Audit = this.R_Audit;
+                    if (R_Audit == 1) {
+                        R_Audit = "审核通过";
+                    } else if (R_Audit == 2) {
+                        R_Audit = "审核未通过";
+                    } else {
+                        R_Audit = "未审核";
+                    }
+
+                    var R_Status = this.R_Status;
+                    if (R_Status == 1) {
+                        R_Status = "全部出库";
+                    } else if (R_Status == 2) {
+                        R_Status = "部分出库";
+                    } else {
+                        R_Status = "未出库";
+                    }
+
+                    var html = '<tr>' +
+                        '<td>' + this.R_Id + '</td>' +
+                        '<td>' + this.R_Number + '</td>' +
+                        '<td>' + this.W_Name + '</td>' +
+                        '<td>' + this.T_Name + '</td>' +
+                        '<td>' + this.R_Date + '</td>' +
+                        '<td>' + this.R_Dispatchers + '</td>' +
+                        '<td>' + R_Audit + '</td>' +
+                        '<td>' + R_Status + '</td>' +
+                        '<td>' + this.R_Frames + '</td>' +
+                        '<td><button type="button" class="layui-btn layui-btn-normal layui-btn-sm" onclick="Del(' + this.R_Id + ')"><i class="layui-icon"></i></button> <input class="btn-link" id="Button1" type="button" value="详情" onclick="Det(' + this.R_Id + ')"/><input class="btn-link" id="Button1" type="button" value="审核" onclick="Aud(' + this.R_Id + ')"/></td>' +
+                        '</tr>'
+                    $("#tb").append(html);
+                })
+            }
+        })
+    }
+
+    //删除调拨信息
+    function Del(id) {
+        if (confirm("确认删除嘛?")) {
+            $.ajax({
+                url: 'http://localhost:55266/api/Redeploy/DelRedeploys?id=' + id,
+                type: 'post',
+                dataType: 'json',
+                success: function (d) {
+                    if (d > 0) {
+                        layer.msg('删除成功');
+                        Show();
+                    }
+                }
+            })
+        }
+    }
+    //详情跳转
+    function Det(id) {
+        location.href = '/Redeploy/Det?id=' + id;
+    }
+
+    //审核跳转
+    function Aud(id) {
+        location.href = '/Redeploy/Audit?id=' + id;
+    }
+</script>

@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "补货需求列表";
+    Layout = "~/Views/Shared/Warehouse_homepage.cshtml";
+}
+
+<h2>补货需求列表</h2>
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Content/layui-v2.5.6/layui/layui.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/layui-v2.5.6/layui/css/layui.css" rel="stylesheet" />
+<br />
+<div>
+    门店:<div class="layui-input-inline layui-form">
+        <select id="Md" name="modules" lay-verify="required" lay-search="">
+            <option value="-1">--请选择--</option>
+        </select>
+    </div>
+    商品编码:<div class="layui-inline">
+        <input class="layui-input form-control" name="id" id="Bm" autocomplete="off">
+    </div>
+    商品名称:<div class="layui-inline">
+        <input class="layui-input form-control" name="id" id="Mc" autocomplete="off">
+    </div>
+    <button type="button" class="layui-btn layui-btn-primary" onclick="Show()">
+        <i class="layui-icon">&#xe615;</i> 查找
+    </button>
+
+</div>
+<br />
+
+<table class="table table-bordered text-center">
+    <tr style="background-color: #f9f4da">
+        <td>序号</td>
+        <td>补货单号</td>
+        <td>补货日期</td>
+        <td>操作</td>
+    </tr>
+    <tbody id="tb"></tbody>
+</table>
+
+<script>
+    //文档就绪函数
+    $(function () {
+        //门店下拉
+        layui.use('form', function () {
+            var form = layui.form;
+            $.ajax({
+                url: 'http://localhost:55266/api/Restocking/GetShops',
+                async: false,
+                success: function (data) {
+                    $.each(data, function (index, item) {
+                        $('#Md').append(new Option(item.S_Name, item.S_Id));
+                    });
+                    layui.form.render("select");
+                }
+            })
+        });
+        Show();
+    });
+
+    function Show() {
+        $.ajax({
+            url: 'http://localhost:55266/api/Restocking/GetDemands',
+            async: false,
+            data: { Bm: $("#Bm").val(), Mc: $("#Mc").val() },
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                $("#tb").empty();
+                $(data).each(function () {
+                    var html = '<tr>' +
+                        '<td>' + this.D_Id + '</td>' +
+                        '<td>' + this.D_Order + '</td>' +
+                        '<td>' + this.D_Date + '</td>' +
+                        '<td><input class="btn-link" id="Button1" type="button" value="详情" onclick="Xq(' + this.D_Id + ')"/></td>' +
+                        '</tr>'
+                    $("#tb").append(html);
+                })
+            }
+        })
+    }
+
+    //详情跳转
+    function Xq(id) {
+        location.href = '/Redeploy/Xq?id=' + id;
+    }
+</script>

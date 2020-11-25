@@ -15,12 +15,14 @@
                 <li class="layui-nav-item"><a href="">控制台</a></li>
                 <li class="layui-nav-item"><a href="">商品管理</a></li>
                 <li class="layui-nav-item"><a href="">用户</a></li>
+                <li class="layui-nav-item"><a href="/Home_page/Stocks">仓库</a></li>
                 <li class="layui-nav-item">
                     <a href="javascript:;">其它系统</a>
                     <dl class="layui-nav-child">
                         <dd><a href="">邮件管理</a></dd>
                         <dd><a href="">消息管理</a></dd>
                         <dd><a href="">授权管理</a></dd>
+                        <dd><div id="cc" class="easyui-calendar" style="width:180px;height:180px;"></div></dd>
                     </dl>
                 </li>
             </ul>
@@ -28,7 +30,7 @@
                 <li class="layui-nav-item">
                     <a href="javascript:;">
                         <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
-                        阿瑞
+                       闲心
                     </a>
                     <dl class="layui-nav-child">
                         <dd><a href="">基本资料</a></dd>
@@ -46,12 +48,12 @@
                     <li class="layui-nav-item layui-nav-itemed">
                         <a class="" href="javascript:;">到货管理</a>
                         <dl class="layui-nav-child">
-                            <dd><a href="javascript:;">到货登记</a></dd>
-                            <dd><a href="javascript:;">快捷到货</a></dd>
-                            <dd><a href="javascript:;">到货记录</a></dd>
+                            <dd><a href="/DhEmp/GetAll">到货登记</a></dd>
+                            <dd><a href="/DhEmp/AddEmp">快捷到货</a></dd>
+                            <dd><a href="/DhEmp/Show">到货记录</a></dd>
                         </dl>
                     </li>
-                    <li class="layui-nav-item">
+                    <li class="layui-nav-item layui-nav-itemed">
                         <a href="javascript:;">入库业务</a>
                         <dl class="layui-nav-child">
                             <dd><a href="javascript:;">入库明细</a></dd>
@@ -59,25 +61,26 @@
                             <dd><a href="">入库任务单</a></dd>
                         </dl>
                     </li>
-                    <li class="layui-nav-item">
+                    <li class="layui-nav-item layui-nav-itemed">
                         <a href="javascript:;">出库管理</a>
                         <dl class="layui-nav-child">
-                            <dd><a href="javascript:;">出库明细</a></dd>
-                            <dd><a href="javascript:;">出库任务单</a></dd>
+                            <dd><a href="~/Task/TaskAdd">出库明细</a></dd>
+                            <dd><a href="/Task/Task123">出库任务单</a></dd>
                         </dl>
                     </li>
-                    <li class="layui-nav-item">
+                    <li class="layui-nav-item layui-nav-itemed">
                         <a href="javascript:;">调拔业务</a>
                         <dl class="layui-nav-child">
-                            <dd><a href="javascript:;">调拔单列表</a></dd>
-                            <dd><a href="javascript:;">调拔单审核</a></dd>
+                            <dd><a href="/Redeploy/Index">调拔单列表</a></dd>
+                            <dd><a href="/Redeploy/Rep">补货需求列表</a></dd>
+                            <dd><a href="/Redeploy/Area">调出发配送区</a></dd>
+                            <dd><a href="/Redeploy/Stor">调拔入库</a></dd>
                         </dl>
                     </li>
-                    <li class="layui-nav-item">
+                    <li class="layui-nav-item layui-nav-itemed">
                         <a href="javascript:;">库存管理</a>
                         <dl class="layui-nav-child">
                             <dd><a href="/Home_page/Stocks">总库存查询</a></dd>
-                            <dd><a href="/Home_page/">采购入库</a></dd>
                             <dd><a href="/Home_page/Security">安全库存预警</a></dd>
                             <dd><a href="/Home_page/Groupbooking">移位中查询</a></dd>
                             <dd><a href="/Home_page/Spectaculars">库存报警看板</a></dd>
@@ -87,14 +90,14 @@
                             <dd><a href="/Home_page/Drop">吊牌查询</a></dd>
                         </dl>
                     </li>
-                    <li class="layui-nav-item">
+                    <li class="layui-nav-item layui-nav-itemed">
                         <a href="javascript:;">报损管理</a>
                         <dl class="layui-nav-child">
                             <dd><a href="javascript:;">报损管理</a></dd>
                             <dd><a href="javascript:;">报损审核</a></dd>
                         </dl>
                     </li>
-                    <li class="layui-nav-item">
+                    <li class="layui-nav-item layui-nav-itemed">
                         <a href="javascript:;">前置仓补货管理</a>
                         <dl class="layui-nav-child">
                             <dd><a href="javascript:;">补货申请</a></dd>
@@ -103,14 +106,14 @@
                             <dd><a href="javascript:;">补货单管理</a></dd>
                         </dl>
                     </li>
-                    <li class="layui-nav-item">
+                    <li class="layui-nav-item layui-nav-itemed">
                         <a href="javascript:;">盘点管理</a>
                         <dl class="layui-nav-child">
                             <dd><a href="javascript:;">盘点任务</a></dd>
                             <dd><a href="javascript:;">盘点审核</a></dd>
                         </dl>
                     </li>
-                    <li class="layui-nav-item">
+                    <li class="layui-nav-item layui-nav-itemed">
                         <a href="javascript:;">仓库管理</a>
                         <dl class="layui-nav-child">
                             <dd><a href="javascript:;">仓库设置</a></dd>
@@ -120,14 +123,14 @@
                             <dd><a href="javascript:;">仓库管理权限</a></dd>
                         </dl>
                     </li>
-                    <li class="layui-nav-item">
+                    <li class="layui-nav-item layui-nav-itemed">
                         <a href="javascript:;">系统设置</a>
                         <dl class="layui-nav-child">
                             <dd><a href="javascript:;">参数设置</a></dd>
                             <dd><a href="javascript:;">类别顺序</a></dd>
                         </dl>
                     </li>
-                    <li class="layui-nav-item">
+                    <li class="layui-nav-item layui-nav-itemed">
                         <a href="javascript:;">补货管理</a>
                         <dl class="layui-nav-child">
                             <dd><a href="javascript:;">添加补货单</a></dd>
@@ -141,15 +144,19 @@
 
         <div class="layui-body">
             <!-- 内容主体区域 -->
-            <div style="padding: 15px;">@RenderBody()</div>
+            <div style="padding: 15px">@RenderBody()</div>
         </div>
 
-        <div class="layui-footer">
+        <div class="layui-footer" style="background: linear-gradient(to top right, #CDDC39, #8BC34A, #FFEB3B)">
             <marquee>
-                True courage is about knowing not when to take a life, but when to spare one.
-                真正的勇气不在于取人性命，而在于宽恕。
-                You can choose whatever path you want.
-                你可以选择任何你想走的路。
+                <p>
+
+                    You can choose whatever path you want.It's never too late to be the person you want to be.
+                    你可以选择任何你想走的路,去做你想成为的那个人永远都不会晚。
+                    A wise man gets more from his enemies than a fool from his friends.
+                    智者从敌人身上学到的比愚者从朋友身上学到的还要多。
+                </p>
+
             </marquee>
         </div>
     </div>

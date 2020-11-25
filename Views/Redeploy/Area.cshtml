@@ -1,0 +1,112 @@
+﻿
+@{
+    ViewBag.Title = "调出发配送区";
+    Layout = "~/Views/Shared/Warehouse_homepage.cshtml";
+}
+
+<h2>调出发配送区</h2>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Content/layui-v2.5.6/layui/layui.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/layui-v2.5.6/layui/css/layui.css" rel="stylesheet" />
+<link href="~/Content/layui-v2.5.6/layui/css/modules/layer/default/layer.css" rel="stylesheet" />
+<br />
+<div>
+    周转筐编号:<div class="layui-inline">
+        <input class="layui-input form-control" name="id" id="Bh" autocomplete="off">
+    </div>
+    自提点:<div class="layui-inline">
+        <input class="layui-input form-control" name="id" id="Ztd" autocomplete="off">
+    </div>
+    温区:<div class="layui-input-inline layui-form">
+        <select id="Wq" name="modules" lay-verify="required" lay-search="">
+            <option value="-1">--请选择--</option>
+        </select>
+    </div>
+    <button type="button" class="layui-btn layui-btn-normal" onclick="Show()">查询</button>
+</div>
+<br />
+<button type="button" onclick="Fp()" data-method="offset" data-type="auto" class="layui-btn layui-btn-normal">发送至配送区</button>
+<br />
+<table class="table table-bordered text-center">
+    <tr style="background-color: #f9f4da">
+        <td>
+            <input type="checkbox" id="boxid" onclick="setAllNo()" />
+        </td>
+        <td>序号</td>
+        <td>周转筐编号</td>
+        <td>温区</td>
+        <td>商品数量</td>
+        <td>配送自取点</td>
+    </tr>
+    <tbody id="tb"></tbody>
+</table>
+
+<script>
+    //文档就绪函数
+    $(function () {
+        //温区下拉
+        layui.use('form', function () {
+            var form = layui.form;
+            $.ajax({
+                url: 'http://localhost:55266/api/Restocking/GetWarms',
+                async: false,
+                success: function (data) {
+                    $.each(data, function (index, item) {
+                        $('#Wq').append(new Option(item.Wa_Name, item.Wa_Id));
+                    });
+                    layui.form.render("select");
+                }
+            })
+        });
+
+        Show();
+    })
+    //显示
+    function Show() {
+        $.ajax({
+            url: 'http://localhost:55266/api/Redeploy/GetDistributions',
+            async: false,
+            data: { Bh: $("#Bh").val(), Ztd: $("#Ztd").val(), Wq: $("#Wq").val() },
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                $("#tb").empty();
+                $(data).each(function () {
+                    var html = '<tr>' +
+                        '<td><input type="checkbox" name="love" /></td>' +
+                        '<td>' + this.D_Id + '</td>' +
+                        '<td>' + this.D_Coding + '</td>' +
+                        '<td>' + this.Wa_Name + '</td>' +
+                        '<td>' + this.D_Number + '</td>' +
+                        '<td>' + this.D_Point + '</td>' +
+                        '</tr>';
+                    $("#tb").append(html);
+                })
+            }
+        });
+    }
+
+    //全选反选函数
+    function setAllNo() {
+        var box = document.getElementById("boxid");
+        var loves = document.getElementsByName("love");
+        if (box.checked == false) {
+            for (var i = 0; i < loves.length; i++) {
+                loves[i].checked = false;
+            }
+        } else {
+            for (var i = 0; i < loves.length; i++) {
+                loves[i].checked = true;
+            }
+        }
+    }
+    //发配地区
+    function Fp() {
+        if (confirm("确认发配嘛？")) {
+            layer.msg('发配成功');
+        }
+    }
+
+</script>

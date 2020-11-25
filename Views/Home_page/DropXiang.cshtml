@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "DropXiang";
+    Layout = "~/Views/Shared/Warehouse_homepage.cshtml";
+}
+
+<link href="~/Easy Ui/Content/icon 1.css" rel="stylesheet" />
+<link href="~/Easy Ui/Content/easyui 2.css" rel="stylesheet" />
+<script src="~/Easy Ui/jquery.min 3.js"></script>
+<script src="~/Easy Ui/jquery.easyui.min 4.js"></script>
+<script src="~/Easy Ui/easyui-lang-zh_CN 5.js"></script>
+<input type="hidden" id="Id" value="@ViewBag.Id" />
+
+<div style="width:100%;height:35px;background-color:darkgray;text-align:center">
+    <h1>【2381】使用记录</h1>
+</div>
+<br />
+使用时间
+<input id="Manufacture" class="easyui-datetimebox" name="birthday" data-options="required:true,showSeconds:false" value="3/4/2010 2:3" style="width:150px">
+至
+<input id="Valid" class="easyui-datetimebox" name="birthday" data-options="required:true,showSeconds:false" value="3/4/2010 2:3" style="width:150px">
+<a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a>
+<br />
+<br />
+<br />
+<table id="dg"></table>
+<br />
+<div style="text-align:center">
+    <input type="button" id="btnSave" value="返回" />
+</div>
+
+<script>
+    $('#dg').datagrid({
+        url: 'http://localhost:55266/api/WMS_Alaetr/Mingxi?Id=' + $("#Id").val(),
+        method: "get",
+        columns: [[
+            { field: 'ck', checkbox: true },
+            { field: 'Id', title: '序号', width: 100 },
+            { field: 'Coding', title: '商品编号', width: 200 },
+            { field: 'Name', title: '商品名称', width: 200 },
+            { field: 'Specification', title: '规格型号', width: 200 },
+            { field: 'Unit', title: '批次号', width: 200 },
+            { field: 'Quantity', title: '数量', width: 200 },
+            {
+                field: 'Manufacture', title: '投入使用时间', width: 100, formatter: function (value, row, index) {
+                    var date = new Date(value);
+                    return date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate();
+                }
+            },
+        ]]
+    });
+
+    //返回
+    $("#btnSave").click(function () {
+        location.href = "/Home_page/Drop";
+    });
+
+    //查询
+    $("#btn").click(function () {
+        $('#dg').datagrid('load', {
+            Manufacture: $("#Manufacture").val(),
+            Valid: $("#Valid").val()
+
+        });
+    });
+ 
+</script>

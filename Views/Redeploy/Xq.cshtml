@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "补货单详情";
+    Layout = "~/Views/Shared/Warehouse_homepage.cshtml";
+}
+
+<h2>补货单详情</h2>
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Content/layui-v2.5.6/layui/layui.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/layui-v2.5.6/layui/css/layui.css" rel="stylesheet" />
+<input id="id" type="hidden" value="@ViewBag.id" />
+
+<div>
+    <button type="button" class="layui-btn layui-btn-primary" style="margin-left:1200px;" onclick="Fh()">
+        <i class="layui-icon">&#xe65c;</i> 返回
+    </button>
+</div>
+
+<table class="table table-bordered text-center">
+    <tr style="background-color: #f9f4da">
+        <td>一级品类</td>
+        <td>商品名称</td>
+        <td>规格</td>
+        <td>价格（元）</td>
+        <td>数量（份）</td>
+        <td>可用库存（份）</td>
+        <td>合计补货（kg）/份</td>
+        <td>审核</td>
+        <td>审核合计数量（份）</td>
+        <td>对比需求（份）</td>
+    </tr>
+    <tbody id="tb"></tbody>
+</table>
+
+<script>
+    $(function () {
+        Show();
+    });
+
+    function Show() {
+        $.ajax({
+            url: 'http://localhost:55266/api/Restocking/GetDemands?id=' + $("#id").val(),
+            async: false,
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                $("#tb").empty();
+                $(data).each(function () {
+                    var html = '<tr>' +
+                        '<td>' + this.C_Name + '</td>' +
+                        '<td>' + this.Ct_Name + '</td>' +
+                        '<td>' + this.D_Specifications + '</td>' +
+                        '<td>' + this.D_Price + '</td>' +
+                        '<td>' + this.D_Number + '</td>' +
+                        '<td>' + this.D_Available + '</td>' +
+                        '<td>' + this.D_Total + '</td>' +
+                        '<td>' + this.D_Audit + '</td>' +
+                        '<td>' + this.D_AuditTotal + '</td>' +
+                        '<td>' + this.D_Contrast + '</td>' +
+                        '</tr>'
+                    $("#tb").append(html);
+                })
+            }
+
+        })
+    }
+
+    //返回
+    function Fh() {
+        location.href = '/Redeploy/Rep';
+    }
+
+</script>

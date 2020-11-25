@@ -1,8 +1,9 @@
 ﻿
 @{
-    ViewBag.Title = "StocksXiang";
+    ViewBag.Title = "xq";
     Layout = "~/Views/Shared/Warehouse_homepage.cshtml";
 }
+
 <link href="~/Easy Ui/Content/icon 1.css" rel="stylesheet" />
 <link href="~/Easy Ui/Content/easyui 2.css" rel="stylesheet" />
 <script src="~/Easy Ui/jquery.min 3.js"></script>
@@ -17,23 +18,24 @@
 </div>
 <script>
     $('#dg').datagrid({
-        url: 'http://localhost:55266/api/WMS_Alaetr/Mingxi?Id=' + $("#Id").val(),
+        url: 'http://localhost:55266/api/Warehouses/ChuKuShowxq?Id=' + $("#Id").val(),
         method: "get",
         columns: [[
             { field: 'Id', title: '序号', width: 100 },
-            { field: 'WName', title: '仓库', width: 100 },
-            { field: 'CName', title: '类别', width: 100 },
+            { field: 'WName', title: '产品品类', width: 100 },
             { field: 'Coding', title: '产品编号', width: 100 },
             { field: 'Name', title: '产品名称', width: 100 },
             { field: 'Specification', title: '产品规格', width: 100 },
+            { field: 'Quantity', title: '库存', width: 100 },
             { field: 'Unit', title: '计量单位', width: 100 },
-            { field: 'Quantity', title: '库存数量', width: 100 },
-            { field: 'Congelation', title: '冻结数量', width: 100 },
-            { field: 'Available', title: '可用库存', width: 100 },
+            { field: 'D_Number', title: '出库任务数量', width: 100 },
+            { field: 'D_Stock', title: '已出库数量', width: 100 },
         ]]
     });
-    //查询
+    //返回
     $("#btnSave").click(function () {
-        location.href = "/Home_page/Stocks";
+        location.href = "/Task/caigou";
     });
 </script>
+
+

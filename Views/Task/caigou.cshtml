@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "caigou";
+    Layout = "~/Views/Shared/Warehouse_homepage.cshtml";
+}
+
+<link href="~/Easy Ui/Content/icon 1.css" rel="stylesheet" />
+<link href="~/Easy Ui/Content/easyui 2.css" rel="stylesheet" />
+<script src="~/Easy Ui/jquery.min 3.js"></script>
+<script src="~/Easy Ui/jquery.easyui.min 4.js"></script>
+<script src="~/Easy Ui/easyui-lang-zh_CN 5.js"></script>
+
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
+    <legend>出库任务单</legend>
+</fieldset>
+
+<input type="button" value="采购退货任务" onclick="location.href='/Task/caigou'" />
+<input type="button" value="产品出库任务" onclick="location.href='/Task/Task123'" />
+<input type="button" value="商品出库任务" onclick="location.href='/Task/shangpin'" />
+<input type="button" value="直接出库任务" onclick="location.href='/Task/chuku'" />
+
+
+@*查询框架*@
+<div style="width:1500px;height:50px;margin-top:10px;border:3px #808080 solid;padding-top:20px;padding-left:30px;margin-bottom:40px">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;任务编号:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input id="Coding" class="easyui-textbox" data-options="iconCls:'icon-search'" style="width:100px">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;任务下达时间:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input id="Coding" class="easyui-textbox" data-options="iconCls:'icon-search'" style="width:100px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="Coding" class="easyui-textbox" data-options="iconCls:'icon-search'" style="width:100px">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;完成状态:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input id="Coding" class="easyui-textbox" data-options="iconCls:'icon-search'" style="width:100px">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a>
+
+</div>
+@*table表格*@
+<table id="dg" style="width:100%"></table>
+
+@*绑定数据*@
+<script>
+    //显示
+    $('#dg').datagrid({
+        url: 'http://localhost:55266/api/Warehouses/ChuKuShow',
+        method: 'get',
+        pagination: true,
+        pageSize: 10,
+        pageList: [10, 20, 50],
+        columns: [[
+            { field: 'Id', title: '序号', width: 80 },
+            { field: 'Coding', title: '任务编号', width: 100 },
+            { field: 'Manufacture', title: '任务下达时间', width: 100 },
+            { field: 'Coding', title: '采购单号', width: 100 },
+            { field: 'A_Review', title: '供应商名称', width: 100 },
+            { field: 'WGoods', title: '出库物品', width: 100 },
+            { field: 'WCompletion', title: '完成情况', width: 100 },
+            {
+                field: 'cz', title: '操作', width: 100, formatter: function (v, r, i) {
+                    return '<input type="button" onclick="Edit(' + r.Id + ')" value="详情" />';
+                }
+            }
+        ]]
+    });
+
+    function Edit(Id) {
+
+        location.href = "xq?Id=" + Id;
+    }
+
+    //查询
+    $("#btn").click(function () {
+        $('#dg').datagrid('load', {
+            WName: $("#WName").val(),
+            CName: $("#CName").val(),
+            Coding: $("#Coding").val(),
+            Name: $("#Name").val()
+        });
+    });
+
+</script>

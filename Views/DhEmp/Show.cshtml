@@ -1,6 +1,6 @@
 ﻿
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/Warehouse_homepage.cshtml";
 }
 
 <!DOCTYPE html>
@@ -33,17 +33,17 @@
         <input id="Button1" type="button" value="查询" onclick="Showc()" />
     </div>
     <div>
-        <table>
+        <table border="1" style="align-items:center; align-self:center;border-left-color:black" >
             <thead>
                 <tr>
-                    <td>序号</td>
-                    <td>采购单号</td>
-                    <td>供应商名称</td>
-                    <td>产品品类</td>
-                    <td>采购日期</td>
-                    <td>采购人</td>
-                    <td>入库状态</td>
-                    <td>操作</td>
+                    <td style="width:80px">序号</td>
+                    <td style="width:80px">采购单号</td>
+                    <td style="width:80px">供应商名称</td>
+                    <td style="width:80px">产品品类</td>
+                    <td style="width:80px">采购日期</td>
+                    <td style="width:80px">采购人</td>
+                    <td style="width:80px">入库状态</td>
+                    <td style="width:120px">操作</td>
                 </tr>
             </thead>
             <thead id="rd">
@@ -55,9 +55,10 @@
 </html>
 <script>
     $(function () {
-        Shows();
+        Showc();
     });
     function Shows() {
+        var a = 1;
         $.ajax({
             url: "http://localhost:55266/api/DhEmp/GetAll",
             type: "GET",
@@ -69,34 +70,38 @@
                     $(res).each(function () {
                         console.log(res);
                         tb += "<tr>"
-                            + "<td>" + this.DhId + "</td>"
+                            + "<td>" + a + "</td>"
+                        a++;
                             + "<td>" + this.DhCgdh + "</td>"
                             + "<td>" + this.DhGys + "</td>"
                             + "<td>" + this.DhPl + "</td>"
                             + "<td>" + this.DhRq + "</td>"
                             + "<td>" + this.DhName + "</td>"
                             + "<td>" + this.DhType + "</td>"
-                            + "<td>" + "<input id=" + this.DhId + " type='button' value='到货详情'" + "onclick= Xqy(" + this.DhId + ")/>" + "<input id=" + this.DhId + " type='button' value='删除'" + "onclick= Del(" + this.DhId + ") />" + "</td>"
-                            + "</tr>";
+                            + "<td>" + "<input id=" + this.DhId + " type='button' value='到货详情'" + "onclick= Xqy(" + this.DhId + ") />" + "<input id=" + this.DhId + " type='button' value='删除'" + "onclick= Del(" + this.DhId + ") />" + "</td>"
+                             + "</tr>";
                     })
                     $("#rd").append(tb);
                 }
         })
     }
     function Del(DhId) {
-        $.ajax({
-            url: "http://localhost:55266/api/DhEmp/DelDhEmp?id=" + DhId,
-            type: "POST",
-            dataType: "json",
-            success: function (d) {
-                if (d > 0) {
-                    Shows();
-                } else {
+        if (confirm("确认删除吗？")) {
+            $.ajax({
+                url: "http://localhost:55266/api/DhEmp/DelDhEmp?id=" + DhId,
+                type: "POST",
+                dataType: "json",
+                success: function (d) {
+                    if (d > 0) {
+                        location.reload()
+                    } else {
 
-                    alert("删除失败!");
+                        alert("删除失败!");
+                    }
                 }
-            }
-        })
+            })
+
+        }
     }
     function Showc() {
         var Cgdh = $('#Cgdh').val()
@@ -104,6 +109,7 @@
         var Pl = $('#Cppl').val()
         var Cgr = $('#Cgr').val()
         var Rkzt = $('#Rkzt').val()
+        var a = 1;
         $.ajax({
             url: "http://localhost:55266/api/DhEmp/Getc?Cgdh=" + Cgdh + "&Gys=" + Gys + "&Pl=" + Pl + "&Cgr=" + Cgr + "&Rkzt=" + Rkzt,
             type: "GET",
@@ -115,18 +121,24 @@
                     $(res).each(function () {
                         console.log(res);
                         tb += "<tr>"
-                            + "<td>" + this.DhId + "</td>"
+                            + "<td>" + a + "</td>"
                             + "<td>" + this.DhCgdh + "</td>"
                             + "<td>" + this.DhGys + "</td>"
                             + "<td>" + this.DhPl + "</td>"
                             + "<td>" + this.DhRq + "</td>"
                             + "<td>" + this.DhName + "</td>"
                             + "<td>" + this.DhType + "</td>"
-                            + "<td>" + "<input id=" + this.DhId + " type='button' value='到货详情'" + "onclick= Xqy(" + this.DhId + ")/>" + "<input id=" + this.DhId + " type='button' value='删除'" + "onclick= Del(" + this.DhId + ") />" + "</td>"
+                            + "<td>" + "<input id=" + this.DhId + " type='button' value='到货详情'" + "onclick= Xqy(" + this.DhId + ") />" + "<input id=" + this.DhId + " type='button' value='删除'" + "onclick= Del(" + this.DhId + ") />" + "</td>"
                             + "</tr>";
+                        a++
                     })
                     $("#rd").append(tb);
                 }
         })
+    }
+
+    //详情
+    function Xqy(DhId) {
+        location.href = '/DhEmp/GetXqy?id=' + DhId
     }
 </script>

@@ -1,6 +1,6 @@
 ﻿
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/Warehouse_homepage.cshtml";
 }
 
 <!DOCTYPE html>
@@ -8,6 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
     <title>GetXqy</title>
 </head>
 <body>
@@ -34,22 +35,33 @@
 
             </thead>
             <thead id="rd">
-
+                @*<tr>
+                    <td id="Xh"></td>
+                    <td id="Ylbm"></td>
+                    <td id="Ylmc"></td>
+                    <td id="Cfwq"></td>
+                    <td id="Ylgg"></td>
+                    <td id="Cgsl"></td>
+                    <td id="Cgdj"></td>
+                    <td id="Je"></td>
+                    <td id="Bz"></td>
+                </tr>*@
             </thead>
         </table>
+        <input id="Button1" type="button" value="编辑" onclick="Bj()" />
     </div>
 </body>
 </html>
 <script>
 
     $(function () {
-        Shows();
+        Showc();
     });
     ///显示
-    function Shows() {
-        var id = $("#uid").val()
+    function Showc() {
+        var ids = $("#uid").val();
         $.ajax({
-            url: "http://localhost:55266/api/DhEmp/GetXqy?id="+id,
+            url: "http://localhost:55266/api/DhEmp/GetXqy?id="+@ViewBag.id,
             type: "GET",
             dataType: "json",
             success:
@@ -60,17 +72,37 @@
                         console.log(res);
                         tb += "<tr>"
                             + "<td>" + this.DhId + "</td>"
-                            + "<td>" + this.DhCgdh + "</td>"
-                            + "<td>" + this.DhGys + "</td>"
-                            + "<td>" + this.DhPl + "</td>"
-                            + "<td>" + this.DhRq + "</td>"
-                            + "<td>" + this.DhName + "</td>"
-                            + "<td>" + this.DhType + "</td>"
-                            + "<td>" + "<input id=" + this.DhId + " type='button' value='删除'" + "onclick= Xqy(" + this.DhId + ") />" + "</td>"
+                            + "<td>" + this.DhYlbm + "</td>"
+                            + "<td>" + this.DhYlmc + "</td>"
+                            + "<td>" + this.DhWq + "</td>"
+                            + "<td>" + this.DhYlGg + "</td>"
+                            + "<td>" + this.DhCgsl + "</td>"
+                            + "<td>" + this.DhDj + "</td>"
+                            + "<td>" + this.DhJe + "</td>"
+                            + "<td>" + this.DhBz + "</td>"
                             + "</tr>";
+                        $("#Dhrq").append(this.DhRq);
+                        $("#Gys").append(this.DhGys);
+                        $("#Kq").append(this.DhHq);
                     })
                     $("#rd").append(tb);
                 }
+
         })
     }
+
+    //详情
+    function Xqy(DhId) {
+        location.href = '/DhEmp/UpEmp?id=' + DhId
+    }
 </script>
+
+@*      ("#Xh  ").text(res.DhId);
+    $   ("#Ylbm").val(this.DhYlbm);
+       $("#Ylmc").val(this.DhYlmc);
+       $("#Cfwq").val(this.DhWq);
+       $("#Ylgg").val(this.DhYlGg);
+       $("#Cgsl").val(this.DhCgsl);
+       $("#Cgdj").val(this.DhDj);
+       $("#Je  ").val(this.DhJe);
+       $("#Bz  ").val(this.DhBz);*@
