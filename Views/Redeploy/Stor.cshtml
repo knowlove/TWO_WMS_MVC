@@ -1,0 +1,186 @@
+﻿
+@{
+    ViewBag.Title = "调拨入库";
+    Layout = "~/Views/Shared/Warehouse_homepage.cshtml";
+}
+
+<h2>调拨入库</h2>
+
+<script src="~/Content/layui-v2.5.6/layui/layui.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/layui-v2.5.6/layui/css/layui.css" rel="stylesheet" />
+<link href="~/Easy Ui/Content/icon 1.css" rel="stylesheet" />
+<link href="~/Easy Ui/Content/easyui 2.css" rel="stylesheet" />
+<script src="~/Easy Ui/jquery.min 3.js"></script>
+<script src="~/Easy Ui/jquery.easyui.min 4.js"></script>
+<script src="~/Easy Ui/easyui-lang-zh_CN 5.js"></script>
+
+<br />
+<div>
+    TS调出单号:<div class="layui-inline">
+        <input class="layui-input form-control" name="id" id="Dh" autocomplete="off">
+    </div>
+    调出仓库:<div class="layui-input-inline layui-form">
+        <select id="Dc" name="modules" lay-verify="required" lay-search="">
+            <option value="-1">--请选择--</option>
+        </select>
+    </div>
+    调入仓库:<div class="layui-input-inline layui-form">
+        <select id="Dr" name="modules" lay-verify="required" lay-search="">
+            <option value="-1">--请选择--</option>
+        </select>
+    </div>
+    商品名称:<div class="layui-inline">
+        <input class="layui-input form-control" name="id" id="Mc" autocomplete="off">
+    </div>
+    <br />
+    调拨人:<div class="layui-inline">
+        <input class="layui-input form-control" name="id" id="Dbr" autocomplete="off">
+    </div>
+    调拨入库单号:<div class="layui-inline">
+        <input class="layui-input form-control" name="id" id="Rk" autocomplete="off">
+    </div>
+    入库日期:<div class="layui-inline"><input class="layui-input form-control" id="Rq" type="date" /></div>
+    商品编码:<div class="layui-inline">
+        <input class="layui-input form-control" name="id" id="Bm" autocomplete="off">
+    </div>
+    入库状态:<div class="layui-input-inline layui-form">
+        <select id="Zt" name="modules" lay-verify="required" lay-search="">
+            <option value="-1">--请选择--</option>
+            <option value="1">未收</option>
+            <option value="2">已收</option>
+            <option value="3">部分收货</option>
+        </select>
+    </div>
+    温区:<div class="layui-input-inline layui-form">
+        <select id="Wq" name="modules" lay-verify="required" lay-search="">
+            <option value="-1">--请选择--</option>
+        </select>
+    </div>
+    退货原因:<div class="layui-input-inline layui-form">
+        <select id="Yy" name="modules" lay-verify="required" lay-search="">
+            <option value="-1">--请选择--</option>
+            <option value="1">原因1</option>
+            <option value="2">原因2</option>
+            <option value="3">其他</option>
+        </select>
+    </div>
+    <a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a>
+    <i id="daochu" class="layui-icon">&#xe67d;</i>导出
+</div>
+
+<br />
+
+@*table表格*@
+<table id="dg" style="width:100%"></table>
+
+@*绑定数据*@
+<script>
+    //调出仓库下拉
+    layui.use('form', function () {
+        var form = layui.form;
+        $.ajax({
+            url: 'http://localhost:55266/api/Redeploy/GetWarehouses',
+            async: false,
+            success: function (data) {
+                $.each(data, function (index, item) {
+                    $('#Dc').append(new Option(item.W_Name, item.W_Id));
+                });
+                layui.form.render("select");
+            }
+        })
+    });
+    //调入仓库下拉
+    layui.use('form', function () {
+        var form = layui.form;
+        $.ajax({
+            url: 'http://localhost:55266/api/Redeploy/GetTransfers',
+            async: false,
+            success: function (data) {
+                $.each(data, function (index, item) {
+                    $('#Dr').append(new Option(item.T_Name, item.T_Id));
+                });
+                layui.form.render("select");
+            }
+        })
+    });
+    //温区下拉
+    layui.use('form', function () {
+        var form = layui.form;
+        $.ajax({
+            url: 'http://localhost:55266/api/Restocking/GetWarms',
+            async: false,
+            success: function (data) {
+                $.each(data, function (index, item) {
+                    $('#Wq').append(new Option(item.Wa_Name, item.Wa_Id));
+                });
+                layui.form.render("select");
+            }
+        })
+    });
+
+    //显示
+    $('#dg').datagrid({
+        url: 'http://localhost:55266/api/Redeploy/GetStorages',
+        async: false,
+        method: 'get',
+        pagination: true,
+        pageSize: 10,
+        pageList: [10, 20, 50],
+        columns: [[
+            { field: 'S_Id', title: '行号', width: 80 },
+            { field: 'S_Order', title: '调拨入库单号', width: 100 },
+            { field: 'S_Odd', title: 'TS调出单号', width: 100 },
+            { field: 'W_Name', title: '调出仓库', width: 100 },
+            { field: 'T_Name', title: '调入仓库', width: 100 },
+            { field: 'S_Sent', title: '发送日期', width: 100 },
+            { field: 'S_Entry', title: '入库日期', width: 100 },
+            { field: 'Wa_Name', title: '温区', width: 100 },
+            { field: 'S_Total', title: '商品总数', width: 100 },
+            { field: 'S_Dispatchers', title: '调拨人', width: 100 },
+            { field: 'S_Consignee', title: '收货人', width: 100 },
+            {
+                field: 'cz', title: '操作', width: 100, formatter: function (v, r, i) {
+                    return '<input type="button" onclick="Edit(' + r.S_Id + ')" value="收货" />';
+                }
+            }
+        ]]
+    });
+
+    //导出
+    $("#daochu").click(function () {
+        $.ajax({
+            url: "http://localhost:55266/api/Redeploy/ExportExcel",
+            type: "GET",
+            dataType: "text",
+            success: function (d) {
+                if (d > 0) {
+                    layer.msg('导出成功');
+                }
+                else {
+                    layer.msg('导出成功');
+                }
+            }
+        })
+    });
+
+    //收货
+    function Edit(Id) {
+        if (confirm("确认收货嘛?")) {
+            layer.msg('收货成功');
+        }
+    }
+
+    //查询
+    $("#btn").click(function () {
+        $('#dg').datagrid('load', {
+            Dh: $("#Dh").val(),
+            Mc: $("#Mc").val(),
+            Dbr: $("#Dbr").val(),
+            Rk: $("#Rk").val(),
+            Rq: $("#Rq").val(),
+            Bm: $("#Bm").val()
+        });
+    });
+
+</script>

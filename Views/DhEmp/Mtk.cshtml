@@ -43,7 +43,7 @@
         var Bm = $('#Bm').val()
         var Mc = $('#Mc').val()
         $.ajax({
-            url: "http://localhost:55266/api/DhEmp/GetPl?Bm="+Bm+"&Mc="+Mc,
+            url: "http://localhost:55266/api/DhEmp/GetPl?Bm="+Bm+"&Mc="+Mc+"&Id=0",
             type: "GET",
             dataType: "json",
             success:
@@ -60,17 +60,16 @@
                             + "<td>" + this.Mc + "</td>"
                             + "<td>" + this.Gg + "</td>"
                             + "<td>" + this.Dw + "</td>"
-                            + "<td>" + "<input id=" + this.DhId + " type='button' value='选择'" + "onclick= Xqy(" + this.DhId + ") />"  + "</td>"
+                            + "<td>" + "<input id=" + this.Id + " type='button' value='选择'" + "onclick= Xqy(" + this.Id + ") />" + "</td>"
                             + "</tr>";
-                        $("#th").append(tb);
                     })
+                    $("#th").append(tb);
                 }
         })
     }
     //详情
-    function Xqy(DhId) {
-          
-        window.parent.opener.document.getElementById("A431").value = DhId;
+    function Xqy(Id) {
+        window.parent.opener.document.getElementById("A431").value = Id;
          window.close();
    
     }

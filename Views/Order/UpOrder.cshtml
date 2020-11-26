@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "UpOrder";
+    Layout = "~/Views/Shared/Warehouse_homepage.cshtml";
+}
+<link href="~/Easy Ui/Content/icon 1.css" rel="stylesheet" />
+<link href="~/Easy Ui/Content/easyui 2.css" rel="stylesheet" />
+<script src="~/Easy Ui/jquery.min 3.js"></script>
+<script src="~/Easy Ui/jquery.easyui.min 4.js"></script>
+<script src="~/Easy Ui/easyui-lang-zh_CN 5.js"></script>
+<input type="hidden" id="Id" value="@ViewBag.Id" />
+
+<table id="dg"></table>
+<br />
+<div style="text-align:center">
+
+    <input type="button" id="btnSave" value="返回" />
+    <input type="button" id="btnSa" value="保存" onclick="Up()" />
+</div>
+
+<script>
+    $('#dg').datagrid({
+        url: 'http://localhost:55266/api/Order/Mingxi?Id=' + $("#Id").val(),
+        method: "get",
+        columns: [[
+            { field: 'DhId', title: '序号', width: 100 },
+            { field: 'DhCgdh', title: '采购单号', width: 150 },
+            { field: 'DhRq', title: '采购时间', width: 200 },
+            {
+                field: 'DhCgsl', title: '采购数量', width: 200, formatter: function (v, r, i) {
+                    return '<input id="DhCgsl" type="text" value="'+r.DhCgsl+'" />';
+                }
+            },
+            {
+                field: 'DhDj', title: '采购单价', width: 200, formatter: function (v, r, i) {
+                    return '<input id="DhDj" type="text" value="' + r.DhDj + '" />';
+                }
+            },
+            {
+                field: 'DhJe', title: '金额(元)', width: 200, formatter: function (v, r, i) {
+                    return '<input id="DhJe" type="text" value="' + r.DhJe + '" />';
+                }
+            },
+            {
+                field: 'DhSl', title: '税率', width: 200, formatter: function (v, r, i) {
+                    return '<input id="DhSl" type="text" value="' + r.DhSl + '" />';
+                }
+            },
+            {
+                field: 'DhRq', title: '生产日期', width: 200, formatter: function (v, r, i) {
+                    return '<input id="DhRq" type="text" value="' + r.DhRq + '" />';
+                }
+            },
+            {
+                field: 'DhBz', title: '备注', width: 200, formatter: function (v, r, i) {
+                    return '<input id="DhBz" type="text" value="' + r.DhBz + '" />';
+                }
+            }
+        ]]
+    });
+    function Up() {
+        var id = $("#Id").val()
+        var DhCgsl = $("#DhCgsl").val()
+        var DhDj = $("#DhDj").val()
+        var DhJe = $("#DhJe").val()
+        var DhSl = $("#DhSl").val()
+        var DhBz = $("#DhBz").val()
+            $.ajax({
+                url: "http://localhost:55266/api/Order/UpOrder?Cgsl=" + DhCgsl + "&Cgdj=" + DhDj + "&Je=" + DhJe + "&Sl=" + DhSl + "&Bz=" + DhBz + "&Id=" + id,
+                type: "POST",
+                dataType: "json",
+                success: function (d) {
+                    if (d > 0) {
+                        location.href = "/Order/Show";
+                    } else {
+
+                        alert("修改失败,请联系管理员!");
+                        location.href = "/Order/Show";
+                    }
+                }
+            })
+
+        
+    }
+    //查询
+    $("#btnSave").click(function () {
+        location.href = "/Order/Show";
+    });
+</script>

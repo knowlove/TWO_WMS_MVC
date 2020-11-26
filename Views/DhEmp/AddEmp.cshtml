@@ -33,14 +33,30 @@
             <option>冷藏</option>
         </select>&nbsp;&nbsp;&nbsp;&nbsp;<br />
         选择物料:<input id="Wl" type="button" value="+" onclick="window.open ('/DhEmp/Mtk', 'newwindow', 'height=400, width=600, top=0,left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no',false)" />
-        <div></div>
-        <input id="Button1" type="button" value="提交" onclick="Tj()" />
+        <br />
+        <input type="text" id="A431" />
+        <input id="Button1" type="button" value="添加" onclick="Tianj()" />
+        <div id="Sj"></div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="Button1" type="button" value="提交" onclick="Tj()" />
     </div>
-    <input  type="text" id="A431"/>
 </body>
 </html>
 <script>
- 
+
+    function Tianj() {
+        var a = $("#A431").val()
+        $.ajax({
+            url: "http://localhost:55266/api/DhEmp/GetPl?Id=}" + a,
+            type: "Get",
+            dataType: "Json",
+            success: function (rej) {
+                var di = "";
+                $("#di").empty();
+                console.log(rej);
+
+            }
+        })
+    }
     function Tj() {
         $.ajax({
             url: "http://localhost:55266/api/DhEmp/AddEmp?id="+@ViewBag.id,
@@ -50,8 +66,8 @@
                 function (res) {
                     var tb = "";
                     $("#rd").empty();
+                    console.log(res);
                     $(res).each(function () {
-                        console.log(res);
                         tb += "<tr>"
                             + "<td>" + this.DhId + "</td>"
                             + "<td>" + this.DhYlbm + "</td>"
