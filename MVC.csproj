@@ -116,6 +116,7 @@
     <Compile Include="Controllers\DhEmpController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Home_pageController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\RedeployController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -612,6 +613,10 @@
     <Content Include="Views\Home_page\Security1.cshtml" />
     <Content Include="Views\Home_page\Stocks1.cshtml" />
     <Content Include="Views\Home_page\StocksXiang.cshtml" />
+    <Content Include="Views\Order\Show.cshtml" />
+    <Content Include="Views\Order\Xqy.cshtml" />
+    <Content Include="Views\Order\UpOrder.cshtml" />
+    <Content Include="Views\Order\DhDj.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

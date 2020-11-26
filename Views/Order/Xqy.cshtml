@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "Xqy";
+    Layout = "~/Views/Shared/Warehouse_homepage.cshtml";
+}
+<link href="~/Easy Ui/Content/icon 1.css" rel="stylesheet" />
+<link href="~/Easy Ui/Content/easyui 2.css" rel="stylesheet" />
+<script src="~/Easy Ui/jquery.min 3.js"></script>
+<script src="~/Easy Ui/jquery.easyui.min 4.js"></script>
+<script src="~/Easy Ui/easyui-lang-zh_CN 5.js"></script>
+<input type="hidden" id="Id" value="@ViewBag.Id" />
+
+
+<table id="dg"></table>
+<br />
+<div style="text-align:center">
+    <input type="button" id="btnSave" value="返回" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input id="Button1" type="button" value="打印" onclick="Dy()" />
+</div>
+<script>
+    $('#dg').datagrid({
+        url: 'http://localhost:55266/api/Order/Mingxi?Id=' + $("#Id").val(),
+        method: "get",
+        columns: [[
+            { field: 'DhId', title: '序号', width: 100 },
+            { field: 'DhCgdh', title: '采购单号', width: 150 },
+            { field: 'DhGys', title: '供应商名称', width: 150 },
+            { field: 'DhPl', title: '产品品类', width: 150 },
+            { field: 'DhRq', title: '采购时间', width: 200 },
+            { field: 'DhName', title: '采购人', width: 150 },
+            { field: 'DhType', title: '入库状态', width: 150 },
+            {
+                field: 'cz', title: '操作', width: 200, formatter: function (v, r, i) {
+                    return '<input type="button" onclick="Upo(' + r.DhId + ')" value="编辑" />';
+                }
+            }
+        ]]
+    });
+    function Upo(Id) {
+        location.href = "UpOrder?Id=" + Id;
+    }
+    //查询
+    $("#btnSave").click(function () {
+        location.href = "/Order/Show";
+    });
+
+
+    //全局打印
+    function Dy() {
+        window.print();
+    }
+</script>
