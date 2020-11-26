@@ -118,6 +118,7 @@
     <Compile Include="Controllers\Home_pageController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\RedeployController.cs" />
+    <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -617,6 +618,14 @@
     <Content Include="Views\Order\Xqy.cshtml" />
     <Content Include="Views\Order\UpOrder.cshtml" />
     <Content Include="Views\Order\DhDj.cshtml" />
+    <Content Include="Views\Task\caigou.cshtml" />
+    <Content Include="Views\Task\chuku.cshtml" />
+    <Content Include="Views\Task\chukuxq.cshtml" />
+    <Content Include="Views\Task\shangpin.cshtml" />
+    <Content Include="Views\Task\shangpinxq.cshtml" />
+    <Content Include="Views\Task\Task123.cshtml" />
+    <Content Include="Views\Task\TaskAdd.cshtml" />
+    <Content Include="Views\Task\xq.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
