@@ -1,9 +1,10 @@
 ﻿
 @{
     ViewBag.Title = "调拨列表";
+    Layout = "~/Views/Shared/Warehouse_homepage.cshtml";
 }
 
-<h2></h2>
+<h2>调拨列表</h2>
 
 <script src="~/Scripts/jquery-3.4.1.js"></script>
 <script src="~/Content/layui-v2.5.6/layui/layui.js"></script>
@@ -14,25 +15,25 @@
 
 <br />
 <div>
-    调出仓库<div class="layui-input-inline layui-form">
+    调出仓库:<div class="layui-input-inline layui-form">
         <select id="Dc" name="modules" lay-verify="required" lay-search="">
             <option value="-1">--请选择--</option>
         </select>
     </div>
-    调入仓库<div class="layui-input-inline layui-form">
+    调入仓库:<div class="layui-input-inline layui-form">
         <select id="Dr" name="modules" lay-verify="required" lay-search="">
             <option value="-1">--请选择--</option>
         </select>
     </div>
-    商品编码<div class="layui-inline">
+    商品编码:<div class="layui-inline">
         <input class="layui-input form-control" name="id" id="Bm" autocomplete="off">
     </div>
-    商品名称<div class="layui-inline">
+    商品名称:<div class="layui-inline">
         <input class="layui-input form-control" name="id" id="Mc" autocomplete="off">
     </div>
     <br />
-    调拨日期<div class="layui-inline"><input class="layui-input form-control" id="Rq" type="date" /></div>
-    调拨单号<div class="layui-inline">
+    调拨日期:<div class="layui-inline"><input class="layui-input form-control" id="Rq" type="date" /></div>
+    调拨单号:<div class="layui-inline">
         <input class="layui-input form-control" name="id" id="Dh" autocomplete="off">
     </div>
     <button type="button" class="layui-btn layui-btn-primary" onclick="Show()">
@@ -180,7 +181,7 @@
                 dataType: 'json',
                 success: function (d) {
                     if (d > 0) {
-                        alert("删除成功");
+                        layer.msg('删除成功');
                         Show();
                     }
                 }

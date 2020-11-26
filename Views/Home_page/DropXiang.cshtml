@@ -20,7 +20,9 @@
 至
 <input id="Valid" class="easyui-datetimebox" name="birthday" data-options="required:true,showSeconds:false" value="3/4/2010 2:3" style="width:150px">
 <a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a>
-<br /><br /><br />
+<br />
+<br />
+<br />
 <table id="dg"></table>
 <br />
 <div style="text-align:center">
@@ -53,12 +55,13 @@
         location.href = "/Home_page/Drop";
     });
 
-     //查询
+    //查询
     $("#btn").click(function () {
         $('#dg').datagrid('load', {
             Manufacture: $("#Manufacture").val(),
             Valid: $("#Valid").val()
-            
+
         });
     });
+ 
 </script>
