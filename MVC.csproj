@@ -113,6 +113,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ChukuController.cs" />
     <Compile Include="Controllers\DhEmpController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Home_pageController.cs" />
@@ -242,6 +243,9 @@
     <Content Include="images\2.jpg" />
     <Content Include="images\3.jpg" />
     <Content Include="images\4.jpg" />
+    <Content Include="images\4772e66619c0f19b5b4d21b132b4a717.jpg" />
+    <Content Include="images\closesanjiao.png" />
+    <Content Include="images\d94901eca2cdb9e32862849ccf8fe31f.png" />
     <Content Include="img\1.jpg" />
     <Content Include="img\2.jpg" />
     <Content Include="img\3.jpg" />
@@ -561,6 +565,7 @@
     <Content Include="packages\WebGrease.1.6.0\.signature.p7s" />
     <Content Include="packages\WebGrease.1.6.0\WebGrease.1.6.0.nupkg" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -616,6 +621,11 @@
     <Content Include="Views\DhEmp\Mtk.cshtml" />
     <Content Include="Views\DhEmp\Show.cshtml" />
     <Content Include="Views\DhEmp\UpEmp.cshtml" />
+    <Content Include="Views\Chuku\Index.cshtml" />
+    <Content Include="Views\Chuku\Indexxq.cshtml" />
+    <Content Include="Views\Chuku\renwudan.cshtml" />
+    <Content Include="Views\Chuku\jiagong.cshtml" />
+    <Content Include="Views\Chuku\zhijie.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
