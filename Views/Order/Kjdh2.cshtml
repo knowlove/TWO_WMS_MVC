@@ -1,0 +1,132 @@
+﻿
+@{
+    ViewBag.Title = "Kjdh2";
+    Layout = "~/Views/Shared/Warehouse_homepage.cshtml";
+}
+
+<link href="~/Easy Ui/Content/icon 1.css" rel="stylesheet" />
+<link href="~/Easy Ui/Content/easyui 2.css" rel="stylesheet" />
+<script src="~/Easy Ui/jquery.min 3.js"></script>
+<script src="~/Easy Ui/jquery.easyui.min 4.js"></script>
+<script src="~/Easy Ui/easyui-lang-zh_CN 5.js"></script>
+<input type="hidden" id="Id" value="@ViewBag.Id" />
+供应商:&nbsp;&nbsp;
+<select id="Gys">
+    <option value="一品鲜">一品鲜</option>
+    <option value="一骑绝尘">一骑绝尘</option>
+    <option value="无人能挡">无人能挡</option>
+</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;卸货库区:
+<select id="Kq">
+    <option value="上海1号库区">上海1号库区</option>
+    <option value="北京2号库区">北京2号库区</option>
+    <option value="河南3号库区">河南3号库区</option>
+
+</select>
+<table id="dg"></table>
+<table>
+    <tr>
+        <td>采购数量</td>
+        <td>采购单价(元)</td>
+        <td>金额(元)</td>
+        <td>税率</td>
+        <td>生产日期</td>
+        <td>备注</td>
+    </tr>
+    <tr>
+        <td><input id="ShuLi" type="text" /></td>
+        <td><input id="DanJia" type="text" /></td>
+        <td><input id="JinE" type="text" /></td>
+        <td>
+            <select id="ShuiLv">
+                <option value="11%">11%</option>
+                <option value="12%">12%</option>
+                <option value="13%">13%</option>
+                <option value="14%">14%</option>
+
+            </select>
+        </td>
+        <td><input id="RiQi" type="text" /></td>
+        <td><input id="BeiZhu" type="text" /></td>
+    </tr>
+</table>
+<br />
+<div style="text-align:center">
+
+    <input type="button" id="btnSave" value="返回" />
+    <input type="button" id="btnSa" value="提交" onclick="Tj()" />
+</div>
+
+<script>
+    $('#dg').datagrid({
+        url: 'http://localhost:55266/api/Order/SetPl?Id=' + $("#Id").val(),
+        method: "post",
+        columns: [[
+            {
+                field: 'Id', title: '序号', width: 200, formatter: function (v, r, i) {
+                    return '<input id="Id" type="text" style="border:0" readonly="readonly" value="' + r.Id + '" />';
+                }
+            },
+            {
+                field: 'Pl', title: '所属品类', width: 200, formatter: function (v, r, i) {
+                    return '<input id="Pl" type="text" style="border:0" readonly="readonly" value="' + r.Pl + '" />';
+                }
+            },
+            {
+                field: 'Bm', title: '物料编码', width: 200, formatter: function (v, r, i) {
+                    return '<input id="Bm" type="text" style="border:0" readonly="readonly" value="' + r.Bm + '" />';
+                }
+            },
+            {
+                field: 'Sx', title: '物料属性', width: 200, formatter: function (v, r, i) {
+                    return '<input id="Sx" type="text" style="border:0" readonly="readonly" value="' + r.Sx + '" />';
+                }
+            },
+            {
+                field: 'Mc', title: '物料名称', width: 200, formatter: function (v, r, i) {
+                    return '<input id="Mc" style="border:0" readonly="readonly" type="text" value="' + r.Mc + '" />';
+                }
+            },
+            {
+                field: 'Gg', title: '物料规格', width: 200, formatter: function (v, r, i) {
+                    return '<input id="Gg" readonly="readonly" style="border:0" type="text" value="' + r.Gg + '" />';
+                }
+            },
+            {
+                field: 'Dw', title: '计量单位', width: 200, formatter: function (v, r, i) {
+                    return '<input id="Dw" readonly="readonly" style="border:0" type="text" value="' + r.Dw + '" />';
+                }
+            }
+        ]]
+    });
+    function Up() {
+        var Id = $("#Id").val()
+        var Pl = $("#Pl").val()
+        var Bm = $("#Bm").val()
+        var Sx = $("#Sx").val()
+        var Mc = $("#Mc").val()
+        var Gg = $("#Gg").val()
+        $.ajDwax({
+            url: "http://localhost:55266/api/Order/UpOrder?Cgsl=" + DhCgsl + "&Cgdj=" + DhDj + "&Je=" + DhJe + "&Sl=" + DhSl + "&Bz=" + DhBz + "&Id=" + id,
+            type: "POST",
+            dataType: "json",
+            success: function (d) {
+                if (d > 0) {
+                    location.href = "/Order/Show";
+                } else {
+
+                    alert("添加失败,请联系管理员!");
+                    location.href = "/Order/Show";
+                }
+            }
+        })
+
+
+    }
+    function Tj() {
+        location.href = "/Order/Show";
+    }
+    //查询
+    $("#btnSave").click(function () {
+        location.href = "/Order/Show";
+    });
+</script>

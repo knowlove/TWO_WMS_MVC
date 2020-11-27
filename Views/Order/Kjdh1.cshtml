@@ -34,7 +34,7 @@
         var Bm = $('#Bm').val()
         var Mc = $('#Mc').val()
         $.ajax({
-            url: "http://localhost:55266/api/Order/GetPl?Bm=" + Bm + "&Mc=" + Mc + "&Id=0",
+            url: "http://localhost:55266/api/Order/GetPl?Bm=" + Bm + "&Mc=" + Mc,
             type: "GET",
             dataType: "json",
             success:
@@ -51,7 +51,7 @@
                             + "<td>" + this.Mc + "</td>"
                             + "<td>" + this.Gg + "</td>"
                             + "<td>" + this.Dw + "</td>"
-                            + "<td>" + "<input id=" + this.Id + " type='button' value='选择'" + "onclick= Xqy(" + this.Id + ") />" + "</td>"
+                            + "<td>" + "<input id=" + this.Id + " type='button' value='选择'" + "onclick= Kjdh(" + this.Id + ") />" + "</td>"
                             + "</tr>";
                     })
                     $("#th").append(tb);
