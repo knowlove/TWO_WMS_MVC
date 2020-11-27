@@ -27,5 +27,14 @@ namespace MVC.Controllers
         {
             return View();
         }
+        public ActionResult Kjdh1()    //总库存查询详情
+        {
+            return View();
+        }
+        public ActionResult Kjdh2(int id)    //总库存查询详情
+        {
+            ViewBag.id = id;
+            return View();
+        }
     }
 }

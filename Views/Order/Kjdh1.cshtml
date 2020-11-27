@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Kjdh1";
+    Layout = "~/Views/Shared/Warehouse_homepage.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<div>
+    <h3>选择产品</h3>
+    产品编码:<input id="Bm" type="text" />产品名称:<input id="Mc" type="text" />
+    <input id="Button1" type="button" value="查询" onclick="Showc()" />
+    <table>
+        <thead>
+            <tr>
+                <td>序号</td>
+                <td>所属品类</td>
+                <td>物料编码</td>
+                <td>物料名称</td>
+                <td>物料规格</td>
+                <td>物料属性</td>
+                <td>计量单位</td>
+                <td>操作</td>
+            </tr>
+        </thead>
+        <thead id="th"></thead>
+    </table>
+</div>
+<script>
+
+    $(function () {
+        Showc();
+    });
+    function Showc() {
+        var Bm = $('#Bm').val()
+        var Mc = $('#Mc').val()
+        $.ajax({
+            url: "http://localhost:55266/api/Order/GetPl?Bm=" + Bm + "&Mc=" + Mc + "&Id=0",
+            type: "GET",
+            dataType: "json",
+            success:
+                function (res) {
+                    var tb = "";
+                    $("#th").empty();
+                    $(res).each(function () {
+                        console.log(res);
+                        tb += "<tr>"
+                            + "<td>" + this.Id + "</td>"
+                            + "<td>" + this.Pl + "</td>"
+                            + "<td>" + this.Bm + "</td>"
+                            + "<td>" + this.Sx + "</td>"
+                            + "<td>" + this.Mc + "</td>"
+                            + "<td>" + this.Gg + "</td>"
+                            + "<td>" + this.Dw + "</td>"
+                            + "<td>" + "<input id=" + this.Id + " type='button' value='选择'" + "onclick= Xqy(" + this.Id + ") />" + "</td>"
+                            + "</tr>";
+                    })
+                    $("#th").append(tb);
+                }
+        })
+    }
+    //详情
+    function Kjdh(Id) {
+        location.href = "/Order/Kjdh2?id=" + Id;
+
+    }
+</script>
