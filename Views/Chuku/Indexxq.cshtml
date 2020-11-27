@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Indexxq";
+    Layout = "~/Views/Shared/Warehouse_homepage.cshtml";
+}
+
+<link href="~/Easy Ui/Content/icon 1.css" rel="stylesheet" />
+<link href="~/Easy Ui/Content/easyui 2.css" rel="stylesheet" />
+<script src="~/Easy Ui/jquery.min 3.js"></script>
+<script src="~/Easy Ui/jquery.easyui.min 4.js"></script>
+<script src="~/Easy Ui/easyui-lang-zh_CN 5.js"></script>
+<input type="hidden" id="Q_Id" value="@ViewBag.Q_Id" />
+
+<table id="dg"></table>
+<br />
+<div style="text-align:center">
+    <input type="button" id="btnSave" value="返回" />
+</div>
+<script>
+    $('#dg').datagrid({
+        url: 'http://localhost:55266/api/rukuui/showxq?Q_Id='+$("#Q_Id").val(),
+        method: "get",
+        columns: [[
+            { field: 'Q_Id', title: '序号', width: 80 },
+            { field: 'Q_Coding', title: '到货单号', width: 100 },
+            { field: 'Q_Order', title: '采购订单号', width: 100 },
+            { field: 'Q_Date', title: '采购日期', width: 100 },
+            { field: 'Q_Handler', title: '采购人员', width: 100 }, 
+            { field: 'Q_Name', title: '入库内容', width: 100 },
+            { field: 'Q_Date', title: '到货日期', width: 100 },
+            { field: 'Q_Status', title: '入库状态', width: 100 },
+        ]]
+    });
+    //查询
+    $("#btnSave").click(function () {
+        location.href = "/Chuku/Index";
+    });
+</script>
+
+

@@ -40,7 +40,8 @@
                 <input id="Name" data-options="iconCls:'icon-search'" class="easyui-textbox" style="width:100px" />
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a>
-
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a id="Button1" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="Dy()" >打印</a>
             </div>
             @*table表格*@
             <table id="dg" style="width:100%"></table>
@@ -88,6 +89,10 @@
                     });
                 });
 
+                //全局打印
+                function Dy() {
+                    window.print($('dg').datagrid());
+                }
             </script>
 
         </div>
