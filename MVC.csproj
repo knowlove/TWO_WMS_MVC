@@ -626,6 +626,7 @@
     <Content Include="Views\Task\Task123.cshtml" />
     <Content Include="Views\Task\TaskAdd.cshtml" />
     <Content Include="Views\Task\xq.cshtml" />
+    <Content Include="Views\Order\Kjdh1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
