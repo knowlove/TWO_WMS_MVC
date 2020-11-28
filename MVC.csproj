@@ -628,6 +628,11 @@
     <Content Include="Views\Task\xq.cshtml" />
     <Content Include="Views\Order\Kjdh1.cshtml" />
     <Content Include="Views\Order\Kjdh2.cshtml" />
+    <Content Include="Views\Chuku\Index.cshtml" />
+    <Content Include="Views\Chuku\Indexxq.cshtml" />
+    <Content Include="Views\Chuku\jiagong.cshtml" />
+    <Content Include="Views\Chuku\renwudan.cshtml" />
+    <Content Include="Views\Chuku\zhijie.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
