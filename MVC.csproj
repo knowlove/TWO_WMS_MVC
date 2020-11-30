@@ -662,6 +662,11 @@
     <Content Include="packages\Newtonsoft.Json.12.0.2\Newtonsoft.Json.12.0.2.nupkg" />
     <Content Include="packages\WebGrease.1.6.0\.signature.p7s" />
     <Content Include="packages\WebGrease.1.6.0\WebGrease.1.6.0.nupkg" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile2.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile3.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile4.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -736,6 +741,11 @@
     <Content Include="Views\Task\Task123.cshtml" />
     <Content Include="Views\Task\TaskAdd.cshtml" />
     <Content Include="Views\Task\xq.cshtml" />
+    <Content Include="Views\Order\Kjdh1.cshtml" />
+    <Content Include="Views\Order\Kjdh2.cshtml" />
+    <Content Include="Views\Redeploy\Rep.cshtml" />
+    <Content Include="Views\Redeploy\Stor.cshtml" />
+    <Content Include="Views\Redeploy\Xq.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include=".vs\MV\v16\" />
